@@ -1,0 +1,9 @@
+.gradle
+.idea
+build
+etc
+gradle/*
+!gradle/libs.versions.toml
+gradlew
+out
+target
