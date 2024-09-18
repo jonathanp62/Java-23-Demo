@@ -10,6 +10,9 @@ Logging is achieved using the SLF4J facade over Logback. The logging configurati
 
 == Demonstrated Concepts
 
+* Markdown Documentation Comments
+* Module Import Declarations
+* Primitive Types in Patterns, instanceof, and switch
 * Scoped Values
 * Statements before super()
 * Stream Gatherers
