@@ -1,11 +1,12 @@
 package net.jmp.demo.java23;
 
 /*
+ * (#)Version.java  0.3.0   09/18/2024
  * (#)Version.java  0.2.0   09/18/2024
  * (#)Version.java  0.1.0   09/18/2024
  *
  * @author    Jonathan Parker
- * @version   0.2.0
+ * @version   0.3.0
  * @since     0.1.0
  *
  * MIT License
@@ -36,7 +37,7 @@ package net.jmp.demo.java23;
  */
 final class Version {
     /** The version. */
-    static final String VERSION_STRING = "0.2.0";
+    static final String VERSION_STRING = "0.3.0";
 
     /**
      * The default constructor.
