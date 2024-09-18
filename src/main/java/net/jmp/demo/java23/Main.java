@@ -1,11 +1,12 @@
 package net.jmp.demo.java23;
 
 /*
+ * (#)Main.java 0.3.0   09/18/2024
  * (#)Main.java 0.2.0   09/18/2024
  * (#)Main.java 0.1.0   09/18/2024
  *
  * @author   Jonathan Parker
- * @version  0.2.0
+ * @version  0.3.0
  * @since    0.1.0
  *
  * MIT License
@@ -95,7 +96,10 @@ final class Main implements Runnable {
 
         final Stream<Demo> demos = Stream.of(
                 new ScopedValueDemo(),
-                new StreamGatherersDemo()
+                new StreamGatherersDemo(),
+                new BeforeSuperDemo(),
+                new UnnamedVariablesDemo(),
+                new StructuredConcurrencyDemo()
         );
 
         demos.forEach(Demo::demo);
