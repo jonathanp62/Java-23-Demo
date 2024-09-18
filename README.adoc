@@ -6,14 +6,13 @@ A program that demonstrates the new and preview features of Java 23.
 Logging
 ~~~~~~~
 
-Logging is achieved using the SLF4J facade over Logback. The logging configuration is supplied in *config/logback.xml*. It can be overriden with a java system property, i.e. *-Dlogback.configurationFile=config/logback.xml*
+Logging is achieved using the SLF4J facade over Logback. The logging configuration is supplied in *config/logback.xml*. It can be overridden with a java system property, i.e. *-Dlogback.configurationFile=config/logback.xml*
 
 == Demonstrated Concepts
 
 * Scoped Values
 * Statements before super()
 * Stream Gatherers
-* String Templates
 * Structured Concurrency
 * Unnamed Variables
 
