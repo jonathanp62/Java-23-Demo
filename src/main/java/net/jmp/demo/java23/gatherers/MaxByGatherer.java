@@ -1,10 +1,11 @@
 package net.jmp.demo.java23.gatherers;
 
 /*
+ * (#)MaxByGatherer.java    0.4.0   09/19/2024
  * (#)MaxByGatherer.java    0.2.0   09/18/2024
  *
  * @author   Jonathan Parker
- * @version  0.2.0
+ * @version  0.4.0
  * @since    0.2.0
  *
  * MIT License
@@ -158,12 +159,15 @@ public final class MaxByGatherer<T, C extends Comparable<C>> implements Gatherer
         return (state, downstream) -> downstream.push(state.maxElement);
     }
 
-    /**
-     * The internal state of the max gatherer.
-     *
-     * @param   <T> The type of element
-     */
+    /// A class containing the internal state of the maxBy gatherer.
+    ///
+    /// @param   <T>    The type of element
     public static class MaxByGathererState<T> {
+        /// The default constructor.
+        private MaxByGathererState() {
+            super();
+        }
+
         T maxElement;
     }
 }

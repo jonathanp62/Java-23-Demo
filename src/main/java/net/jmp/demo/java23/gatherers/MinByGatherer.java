@@ -1,10 +1,11 @@
 package net.jmp.demo.java23.gatherers;
 
 /*
+ * (#)MinByGatherer.java    0.4.0   09/19/2024
  * (#)MinByGatherer.java    0.2.0   09/18/2024
  *
  * @author   Jonathan Parker
- * @version  0.2.0
+ * @version  0.4.0
  * @since    0.2.0
  *
  * MIT License
@@ -158,12 +159,15 @@ public class MinByGatherer<T, C extends Comparable<C>> implements Gatherer<T, Mi
         return (state, downstream) -> downstream.push(state.minElement);
     }
 
-    /**
-     * The internal state of the max gatherer.
-     *
-     * @param   <T> The type of element
-     */
+    /// A class containing the internal state of the minBy gatherer.
+    ///
+    /// @param   <T>    The type of element
     public static class MinByGathererState<T> {
+        /// The default constructor.
+        private MinByGathererState() {
+            super();
+        }
+
         T minElement;
     }
 }

@@ -1,10 +1,11 @@
 package net.jmp.demo.java23.gatherers;
 
 /*
+ * (#)MapNotNullGatherer.java   0.4.0   09/19/2024
  * (#)MapNotNullGatherer.java   0.2.0   09/18/2024
  *
  * @author   Jonathan Parker
- * @version  0.2.0
+ * @version  0.4.0
  * @since    0.2.0
  *
  * MIT License
@@ -43,7 +44,6 @@ import java.util.stream.Gatherer;
  * The optional finisher operation is not present in this gatherer.
  *
  * @param   <T> The type of input elements to the gathering operation
- * @param   <A> The potentially mutable state type of the gathering operation
  * @param   <R> The type of output elements from the gatherer operation
  */
 public final class MapNotNullGatherer<T, R> implements Gatherer<T, T, R> {
