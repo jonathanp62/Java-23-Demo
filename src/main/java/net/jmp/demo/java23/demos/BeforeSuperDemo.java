@@ -1,11 +1,8 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)BeforeSuperDemo.java  0.4.0   09/19/2024
  * (#)BeforeSuperDemo.java  0.3.0   09/18/2024
- *
- * @author   Jonathan Parker
- * @version  0.3.0
- * @since    0.3.0
  *
  * MIT License
  *
@@ -37,29 +34,26 @@ import static net.jmp.demo.java23.util.LoggerUtils.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * A class the demonstrates statements before 'super()' in a constructor.
- * This allows developers to place essential initialization logic before
- * invoking the superclass constructor. Additionally, this can be used to
- * transform values received in the derived class before calling the base
- * class constructor. Note that statements we put before super() cannot
- * access instance variables or execute methods and access to "this" is
- * prohibited.
- */
+/// A class the demonstrates statements before 'super()' in a constructor.
+/// This allows developers to place essential initialization logic before
+/// invoking the superclass constructor. Additionally, this can be used to
+/// transform values received in the derived class before calling the base
+/// class constructor. Note that statements we put before super() cannot
+/// access instance variables or execute methods and access to "this" is
+/// prohibited.
+///
+/// @version    0.4.0
+/// @since      0.3.0
 public final class BeforeSuperDemo implements Demo {
-    /** The logger. */
+    /// The logger.
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
-    /**
-     * The default constructor.
-     */
+    /// The default constructor.
     public BeforeSuperDemo() {
         super();
     }
 
-    /**
-     * The demo method.
-     */
+    /// The demo method.
     @Override
     public void demo() {
         if (this.logger.isTraceEnabled()) {
@@ -81,17 +75,14 @@ public final class BeforeSuperDemo implements Demo {
         }
     }
 
-    /**
-     * A shape.
-     */
+    /// A shape class.
     static class Shape {
+        /// The color.
         protected String color;
 
-        /**
-         * The constructor.
-         *
-         * @param   color   java.lang.String
-         */
+        /// The constructor.
+        ///
+        /// @param  color   java.lang.String
         public Shape(final String color) {
             super();
 
@@ -99,19 +90,19 @@ public final class BeforeSuperDemo implements Demo {
         }
     }
 
-    /**
-     * A square.
-     */
+    /// A square class.
     static final class Square extends Shape {
+        /// The number of sides.
         private final int sides;
+
+        /// The length of each side.
         private final int length;
 
-        /**
-         * The constructor.
-         *
-         * @param   sides   int
-         * @param   length  int
-         */
+        /// The constructor.
+        ///
+        /// @param  sides   int
+        /// @param  length  int
+        /// @param  color   java.lang.String
         Square(final int sides, final int length, final String color) {
             if (sides != 4) {
                 throw new IllegalArgumentException("Squares must have four sides");
@@ -127,11 +118,9 @@ public final class BeforeSuperDemo implements Demo {
             this.length = length;
         }
 
-        /**
-         * The to-string method.
-         *
-         * @return  java.lang.String
-         */
+        /// The to-string method.
+        ///
+        /// @return java.lang.String
         @Override
         public String toString() {
             return String.format("Square {sides=%d, length=%d, color=\"%s\"}", this.sides, this.length, this.color);

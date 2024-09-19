@@ -1,11 +1,8 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)StructuredConcurrencyDemo.java    0.4.0   09/19/2024
  * (#)StructuredConcurrencyDemo.java    0.3.0   09/18/2024
- *
- * @author   Jonathan Parker
- * @version  0.3.0
- * @since    0.3.0
  *
  * MIT License
  *
@@ -48,25 +45,23 @@ import static net.jmp.demo.java23.util.LoggerUtils.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * A class the demonstrates using structured concurrency.
- *
- * <a href="https://openjdk.org/jeps/462">JEP 462: Structured Concurrency (Second Preview)</a>
- */
+/// A class the demonstrates using structured concurrency.
+///
+/// References
+/// - [JEP 462: Structured Concurrency (Second Preview)](https://openjdk.org/jeps/462)
+///
+/// @version    0.4.0
+/// @since      0.3.0
 public final class StructuredConcurrencyDemo implements Demo {
-    /** The logger. */
+    /// The logger.
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
-    /**
-     * The default constructor.
-     */
+    /// The default constructor.
     public StructuredConcurrencyDemo() {
         super();
     }
 
-    /**
-     * The demo method.
-     */
+    /// The demo method.
     @Override
     public void demo() {
         if (this.logger.isTraceEnabled()) {
@@ -83,9 +78,7 @@ public final class StructuredConcurrencyDemo implements Demo {
         }
     }
 
-    /**
-     * Use the custom scope as a policy.
-     */
+    /// Use the custom scope as a policy.
     private void customPolicy() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
@@ -118,14 +111,12 @@ public final class StructuredConcurrencyDemo implements Demo {
         }
     }
 
-    /**
-     * Gather all completed results and exceptions using a custom scope.
-     *
-     * @param   <T>     The type of result
-     * @param   tasks   java.util.concurrent.Callable&lt;T&gt;
-     * @return          net.jmp.demo.java22.SturcturedConcurrenyDemo.CustomScopeResultsAndThrowables
-     * @throws          java.lang.InterruptedException
-     */
+    /// Gather all completed results and exceptions using a custom scope.
+    ///
+    /// @param  <T>     The type of result
+    /// @param  tasks   java.util.concurrent.Callable<T>
+    /// @return         net.jmp.demo.java22.StructuredConcurrencyDemo.CustomScopeResultsAndThrowables
+    /// @throws         java.lang.InterruptedException  When a thread is interrupted
     private <T> CustomScopeResultsAndThrowables<T> allResultsAndThrowables(final List<Callable<T>> tasks) throws InterruptedException {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
@@ -152,11 +143,9 @@ public final class StructuredConcurrencyDemo implements Demo {
         return scopeResults;
     }
 
-    /**
-     * No shutdown policy. Collect a list
-     * of each task's respective success
-     * or failure.
-     */
+    /// No shutdown policy. Collect a list
+    /// of each task's respective success
+    /// or failure.
     private void noShutdownPolicy() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
@@ -193,17 +182,15 @@ public final class StructuredConcurrencyDemo implements Demo {
         }
     }
 
-    /**
-     * If the scope owner processes subtask exceptions to produce a composite
-     * result, rather than use a shutdown policy, then exceptions can be
-     * returned as values from the subtasks. For example, here is a method
-     * that runs a list of tasks in parallel and returns a list of completed
-     * Futures containing each task's respective successful or exceptional result.
-     *
-     * @param   tasks   java.util.List&lt;java.util.concurrent.Callable&lt;java.lang.Integer&gt;&gt;
-     * @return          java.util.stream.Stream&lt;java.util.concurrent.Future&lt;java.lang.Integer&gt;&gt;
-     * @throws          java.lang.InterruptedException
-     */
+    /// If the scope owner processes subtask exceptions to produce a composite
+    /// result, rather than use a shutdown policy, then exceptions can be
+    /// returned as values from the subtasks. For example, here is a method
+    /// that runs a list of tasks in parallel and returns a list of completed
+    /// Futures containing each task's respective successful or exceptional result.
+    ///
+    /// @param  tasks   java.util.List<java.util.concurrent.Callable<java.lang.Integer>>
+    /// @return         java.util.stream.Stream<java.util.concurrent.Future<java.lang.Integer>>
+    /// @throws         java.lang.InterruptedException  When a thread is interrupted
     private Stream<Future<Integer>> executeAll(final List<Callable<Integer>> tasks) throws InterruptedException {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entryWith(tasks));
@@ -231,13 +218,11 @@ public final class StructuredConcurrencyDemo implements Demo {
         return results;
     }
 
-    /**
-     * Convert a callable task into a completable future.
-     *
-     * @param   <T>     The type of callable
-     * @param   task    java.util.concurrent.Callable
-     * @return          java.util.concurrent.Callable&lt;java.util.concurrent.Future&lt;T&gt;&gt;
-     */
+    /// Convert a callable task into a completable future.
+    ///
+    /// @param  <T>     The type of callable
+    /// @param  task    java.util.concurrent.Callable
+    /// @return         java.util.concurrent.Callable<java.util.concurrent.Future<T>>
     private <T> Callable<Future<T>> taskAsFuture(final Callable<T> task) {
         return () -> {
             try {
@@ -248,9 +233,7 @@ public final class StructuredConcurrencyDemo implements Demo {
         };
     }
 
-    /**
-     * Get the value or handle an exception.
-     */
+    /// Get the value or handle an exception.
     private void shutdownOnFailure() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
@@ -296,9 +279,7 @@ public final class StructuredConcurrencyDemo implements Demo {
         }
     }
 
-    /**
-     * Get the value of the first callable that succeeds
-     */
+    /// Get the value of the first callable that succeeds
     private void shutdownOnSuccess() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
@@ -328,17 +309,15 @@ public final class StructuredConcurrencyDemo implements Demo {
         }
     }
 
-    /**
-     * Returns the value of the
-     * first callable that succeeds.
-     *
-     * @param   tasks   java.util.List&lt;java.util.Callable&lt;java.lang.String&gt;&gt;
-     * @param   instant java.time.Instant
-     * @return          java.lang.String
-     * @throws          java.util.concurrent.ExecutionException
-     * @throws          java.lang.InterruptedException
-     * @throws          java.util.concurrent.TimeoutException
-     */
+    /// Returns the value of the
+    /// first callable that succeeds.
+    ///
+    /// @param  tasks   java.util.List<java.util.Callable<java.lang.String>>
+    /// @param  instant java.time.Instant
+    /// @return         java.lang.String
+    /// @throws         java.util.concurrent.ExecutionException When a thread incurs an exception
+    /// @throws         java.lang.InterruptedException          When a thread is interrupted
+    /// @throws         java.util.concurrent.TimeoutException   When a thread times out
     private String race(final List<Callable<String>> tasks, final Instant instant) throws ExecutionException, InterruptedException, TimeoutException {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entryWith(tasks, instant));
@@ -364,14 +343,12 @@ public final class StructuredConcurrencyDemo implements Demo {
         return result;
     }
 
-    /**
-     * Return the results of all the tasks
-     * only failing if one of them should fail.
-     *
-     * @param   tasks   java.util.List&lt;java.util.Callable&lt;java.lang.String&gt;&gt;
-     * @return          java.util.stream.Stream&lt;java.lang.String&gt;
-     * @throws          java.lang.InterruptedException
-     */
+    /// Return the results of all the tasks
+    /// only failing if one of them should fail.
+    ///
+    /// @param  tasks   java.util.List<java.util.Callable<java.lang.String>>
+    /// @return         java.util.stream.Stream<java.lang.String>
+    /// @throws         java.lang.InterruptedException  When a thread is interrupted
     private Stream<String> runAll(final List<Callable<String>> tasks) throws InterruptedException {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entryWith(tasks));
@@ -408,14 +385,12 @@ public final class StructuredConcurrencyDemo implements Demo {
         return results;
     }
 
-    /**
-     * Create and return a response object or
-     * fail if any of the subtasks fail.
-     *
-     * @return  net.jmp.demo.java22.demos.StructuredConcurrencyDemo.Response
-     * @throws  java.util.concurrent.ExecutionException
-     * @throws  java.lang.InterruptedException
-     */
+    /// Create and return a response object or
+    /// fail if any of the subtasks fail.
+    ///
+    /// @return     net.jmp.demo.java23.demos.StructuredConcurrencyDemo.Response
+    /// @throws     java.util.concurrent.ExecutionException When a thread incurs an exception
+    /// @throws     java.lang.InterruptedException          When a thread is interrupted
     private Response getResponse() throws ExecutionException, InterruptedException {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
@@ -442,39 +417,31 @@ public final class StructuredConcurrencyDemo implements Demo {
         return response;
     }
 
-    /**
-     * Return the user.
-     *
-     * @return  java.lang.String
-     */
+    /// Return the user.
+    ///
+    /// @return java.lang.String
     private String findUser() {
         return "Jonathan";
     }
 
-    /**
-     * Return the order number.
-     *
-     * @return  java.lang.Integer
-     */
+    /// Return the order number.
+    ///
+    /// @return java.lang.Integer
     private Integer findOrderNumber() {
         return 123;
     }
 
-    /**
-     * A response record.
-     *
-     * @param   user        java.lang.String
-     * @param   orderNumber java.lang.Integer
-     */
+    /// A response record.
+    ///
+    /// @param  user        java.lang.String
+    /// @param  orderNumber java.lang.Integer
     record Response(String user, Integer orderNumber) {}
 
-    /**
-     * A record in which to return all the results
-     * and throwables collected by the custom scope.
-     *
-     * @param   <T>         The type of result
-     * @param   results     java.util.List&lt;T&gt;
-     * @param   throwables  java.util.List&lt;java.lang.Throwable&gt;
-     */
+    /// A record in which to return all the results
+    /// and throwables collected by the custom scope.
+    ///
+    /// @param  <T>         The type of result
+    /// @param  results     java.util.List<T>
+    /// @param  throwables  java.util.List<java.lang.Throwable>
     record CustomScopeResultsAndThrowables<T>(List<T> results, List<Throwable> throwables) {}
 }

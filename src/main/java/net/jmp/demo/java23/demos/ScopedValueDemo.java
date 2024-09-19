@@ -1,11 +1,8 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)ScopedValueDemo.java  0.4.0   09/19/2024
  * (#)ScopedValueDemo.java  0.2.0   09/18/2024
- *
- * @author   Jonathan Parker
- * @version  0.2.0
- * @since    0.2.0
  *
  * MIT License
  *
@@ -40,39 +37,36 @@ import static net.jmp.demo.java23.util.LoggerUtils.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * The class that demonstrates the scoped value.
- *
- * A scoped value is a container object that allows
- * a data value to be safely and efficiently shared
- * by a method with its direct and indirect callees
- * within the same thread, and with child threads,
- * without resorting to method parameters. It is a
- * variable of type ScopedValue. Typically, it is
- * declared as a final static field, and its accessibility
- * is set to private so that it cannot be directly accessed
- * by code in other classes.
- */
+/// The class that demonstrates the scoped value.
+///
+/// A scoped value is a container object that allows
+/// a data value to be safely and efficiently shared
+/// by a method with its direct and indirect callees
+/// within the same thread, and with child threads,
+/// without resorting to method parameters. It is a
+/// variable of type ScopedValue. Typically, it is
+/// declared as a final static field, and its accessibility
+/// is set to private so that it cannot be directly accessed
+/// by code in other classes.
+///
+/// @version    0.4.0
+/// @since      0.2.0
 public final class ScopedValueDemo implements Demo {
-    /** The logger. */
+    /// The logger.
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
-    /** A scoped value UUID. */
+    /// A scoped value UUID.
     private static final ScopedValue<String> UID = ScopedValue.newInstance();
 
-    /** A scoped value name. */
+    /// A scoped value name.
     private static final ScopedValue<String> NAME = ScopedValue.newInstance();
 
-    /**
-     * The default constructor.
-     */
+    /// The default constructor.
     public ScopedValueDemo() {
         super();
     }
 
-    /**
-     * The demo method.
-     */
+    /// The demo method.
     @Override
     public void demo() {
         if (this.logger.isTraceEnabled()) {
@@ -89,10 +83,8 @@ public final class ScopedValueDemo implements Demo {
         }
     }
 
-    /**
-     * Basic usage. Bind 'uuid' to UUID
-     * and pass it to the runnable.
-     */
+    /// Basic usage. Bind 'uuid' to UUID
+    /// and pass it to the runnable.
     private void basic() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
@@ -119,9 +111,7 @@ public final class ScopedValueDemo implements Demo {
         }
     }
 
-    /**
-     * Multiple bindings.
-     */
+    /// Multiple bindings.
     private void multiples() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
@@ -145,9 +135,7 @@ public final class ScopedValueDemo implements Demo {
         }
     }
 
-    /**
-     * Rebinding a scoped value.
-     */
+    /// Rebinding a scoped value.
     private void rebinding() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
@@ -160,9 +148,7 @@ public final class ScopedValueDemo implements Demo {
         }
     }
 
-    /**
-     * Method bar.
-     */
+    /// Method bar.
     private void bar() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
@@ -183,9 +169,7 @@ public final class ScopedValueDemo implements Demo {
         }
     }
 
-    /**
-     * Method baz.
-     */
+    /// Method baz.
     private void baz() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
@@ -200,9 +184,7 @@ public final class ScopedValueDemo implements Demo {
         }
     }
 
-    /**
-     * Inheritance or sharing across threads.
-     */
+    /// Inheritance or sharing across threads.
     private void inheritance() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
@@ -258,12 +240,10 @@ public final class ScopedValueDemo implements Demo {
         }
     }
 
-    /**
-     * Log the status of a subtask.
-     *
-     * @param   subtask java.util.concurrent.StructuredTaskScope.Subtask&lt;java.lang.String&gt;
-     * @param   item    int
-     */
+    /// Log the status of a subtask.
+    ///
+    /// @param  subtask java.util.concurrent.StructuredTaskScope.Subtask<java.lang.String>
+    /// @param  item    int
     private void logSubtaskStatus(final StructuredTaskScope.Subtask<String> subtask, final int item) {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entryWith(subtask, item));

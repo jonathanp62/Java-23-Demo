@@ -1,11 +1,8 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)UnnamedVariablesDemo.java 0.4.0   09/19/2024
  * (#)UnnamedVariablesDemo.java 0.3.0   09/18/2024
- *
- * @author   Jonathan Parker
- * @version  0.3.0
- * @since    0.3.0
  *
  * MIT License
  *
@@ -39,23 +36,20 @@ import static net.jmp.demo.java23.util.LoggerUtils.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * A class the demonstrates using unnamed variables.
- */
+/// A class the demonstrates using unnamed variables.
+///
+/// @version    0.4.0
+/// @since      0.3.0
 public final class UnnamedVariablesDemo implements Demo {
-    /** The logger. */
+    /// The logger.
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
-    /**
-     * The default constructor.
-     */
+    /// The default constructor.
     public UnnamedVariablesDemo() {
         super();
     }
 
-    /**
-     * The demo method.
-     */
+    /// The demo method.
     @Override
     public void demo() {
         if (this.logger.isTraceEnabled()) {
@@ -70,9 +64,7 @@ public final class UnnamedVariablesDemo implements Demo {
         }
     }
 
-    /**
-     * Unnamed variables.
-     */
+    /// Unnamed variables.
     private void unnamedVariables() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
@@ -119,9 +111,7 @@ public final class UnnamedVariablesDemo implements Demo {
         }
     }
 
-    /**
-     * Unnamed patterns.
-     */
+    /// Unnamed patterns.
     private void unnamedPatterns() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());

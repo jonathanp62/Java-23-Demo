@@ -1,11 +1,8 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)Demo.java 0.4.0   09/19/2024
  * (#)Demo.java 0.1.0   09/18/2024
- *
- * @author   Jonathan Parker
- * @version  0.1.0
- * @since    0.1.0
  *
  * MIT License
  *
@@ -30,13 +27,12 @@ package net.jmp.demo.java23.demos;
  * SOFTWARE.
  */
 
-/**
- * The demo interface.
- */
+/// The demo interface.
+///
+/// @version    0.4.0
+/// @since      0.1.0
 @FunctionalInterface
 public interface Demo {
-    /**
-     * The demo method.
-     */
+    /// The demo method.
     public void demo();
 }
