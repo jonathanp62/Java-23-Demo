@@ -1,11 +1,8 @@
 package net.jmp.demo.java23.util;
 
 /*
+ * (#)LoggerUtils.java  0.4.0   09/19/2024
  * (#)LoggerUtils.java  0.1.0   09/18/2024
- *
- * @author   Jonathan Parker
- * @version  0.1.0
- * @since    0.1.0
  *
  * MIT License
  *
@@ -33,33 +30,28 @@ package net.jmp.demo.java23.util;
 import static net.jmp.demo.java23.constants.LoggerConstants.ENTRY;
 import static net.jmp.demo.java23.constants.LoggerConstants.EXIT;
 
-/**
- * Logger utilities to assist in creating
- * trace entry and exit records.
- */
+/// Logger utilities to assist in creating
+/// trace entry and exit records.
+///
+/// @version    0.4.0
+/// @since      0.1.0
 public final class LoggerUtils {
-    /**
-     * The default constructor.
-     */
+    /// The default constructor.
     private LoggerUtils() {
         super();
     }
 
-    /**
-     * Format a trace entry message.
-     *
-     * @return  java.lang.String
-     */
+    /// Format a trace entry message.
+    ///
+    /// @return java.lang.String
     public static String entry() {
         return ENTRY;
     }
 
-    /**
-     * Format a trace entry message with arguments.
-     *
-     * @param   objArray    java.lang.Object[]
-     * @return              java.lang.String
-     */
+    /// Format a trace entry message with arguments.
+    ///
+    /// @param  objArray    java.lang.Object[]
+    /// @return             java.lang.String
     public static String entryWith(final Object... objArray) {
         final StringBuilder sb = new StringBuilder();
 
@@ -78,21 +70,17 @@ public final class LoggerUtils {
         return sb.toString();
     }
 
-    /**
-     * Format a trace exit message.
-     *
-     * @return  java.lang.String
-     */
+    /// Format a trace exit message.
+    ///
+    /// @return java.lang.String
     public static String exit() {
         return EXIT;
     }
 
-    /**
-     * Format a trace exit message with an argument.
-     *
-     * @param   object  java.lang.Object
-     * @return          java.lang.String
-     */
+    /// Format a trace exit message with an argument.
+    ///
+    /// @param  object  java.lang.Object
+    /// @return         java.lang.String
     public static String exitWith(final Object object) {
         final StringBuilder sb = new StringBuilder();
 

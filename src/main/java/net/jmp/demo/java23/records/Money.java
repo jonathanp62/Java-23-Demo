@@ -1,11 +1,8 @@
 package net.jmp.demo.java23.records;
 
 /*
+ * (#)Money.java    0.4.0   09/19/2024
  * (#)Money.java    0.2.0   09/18/2024
- *
- * @author   Jonathan Parker
- * @version  0.2.0
- * @since    0.2.0
  *
  * MIT License
  *
@@ -34,29 +31,26 @@ import java.math.BigDecimal;
 
 import java.util.Currency;
 
-/**
- * A money class.
- *
- * @param   amount      java.math.BigDecimal
- * @param   currency    java.util.Currency
- */
+/// A money record. It is used
+/// by the stream gatherers demo.
+///
+/// @param   amount     java.math.BigDecimal
+/// @param   currency   java.util.Currency
+/// @version            0.4.0
+/// @since              0.2.0
 public record Money(BigDecimal amount, Currency currency) {
-    /**
-     * Add some money.
-     *
-     * @param   money   net.jmp.demo.java22.StreamGatherersDemo.Money
-     * @return          net.jmp.demo.java22.StreamGatherersDemo.Money
-     */
+    /// Method that adds some money.
+    ///
+    /// @param  money   net.jmp.demo.java23.StreamGatherersDemo.Money
+    /// @return         net.jmp.demo.java23.StreamGatherersDemo.Money
     public Money add(final Money money) {
         return new Money(money.amount.add(this.amount), currency);
     }
 
-    /**
-     * Multiply.
-     *
-     * @param   multiplier  java.math.BigDecimal
-     * @return              net.jmp.demo.java22.StreamGatherersDemo.Money
-     */
+    /// Method that multiplies.
+    ///
+    /// @param  multiplier  java.math.BigDecimal
+    /// @return             net.jmp.demo.java23.StreamGatherersDemo.Money
     public Money multiply(final BigDecimal multiplier) {
         return new Money(amount.multiply(multiplier), currency);
     }
