@@ -28,7 +28,7 @@ package net.jmp.demo.java23;
  */
 
 /// The name class. This class simply
-/// provides a constant.
+/// provides a string constant.
 ///
 /// @version    0.4.0
 /// @since      0.1.0

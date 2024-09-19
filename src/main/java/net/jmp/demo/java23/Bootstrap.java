@@ -1,8 +1,8 @@
 package net.jmp.demo.java23;
 
 /*
- * (#)Main.java 0.4.0   09/19/2024
- * (#)Main.java 0.1.0   09/18/2024
+ * (#)Bootstrap.java    0.4.0   09/19/2024
+ * (#)Bootstrap.java    0.1.0   09/18/2024
  *
  * MIT License
  *
