@@ -133,6 +133,7 @@ tasks.withType(Javadoc).configureEach {
     opt.encoding("UTF-8")
     opt.addStringOption("source", "23")
     opt.addBooleanOption("-enable-preview", true)
+    opt.memberLevel = JavadocMemberLevel.PRIVATE
 }
 
 tasks.withType(JavaExec).configureEach {
