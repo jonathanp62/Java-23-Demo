@@ -115,7 +115,7 @@ public final class StructuredConcurrencyDemo implements Demo {
     ///
     /// @param  <T>     The type of result
     /// @param  tasks   java.util.concurrent.Callable<T>
-    /// @return         net.jmp.demo.java22.StructuredConcurrencyDemo.CustomScopeResultsAndThrowables
+    /// @return         net.jmp.demo.java23.StructuredConcurrencyDemo.CustomScopeResultsAndThrowables<T>
     /// @throws         java.lang.InterruptedException  When a thread is interrupted
     private <T> CustomScopeResultsAndThrowables<T> allResultsAndThrowables(final List<Callable<T>> tasks) throws InterruptedException {
         if (this.logger.isTraceEnabled()) {

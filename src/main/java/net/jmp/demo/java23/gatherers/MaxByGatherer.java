@@ -40,44 +40,39 @@ import java.util.function.Supplier;
 
 import java.util.stream.Gatherer;
 
-/**
- * This gatherer designed to find the maximum element in a stream based on a selector function.
- *
- * @param   <T> The type of input elements to the gathering operation
- * @param   <C> A type that extends Comparable; T must extend Comparable
- */
+/// This gatherer designed to find the maximum element in a stream based on a selector function.
+///
+/// @param  <T> The type of input elements to the gathering operation
+/// @param  <C> A type that extends Comparable; T must extend Comparable
+///
+/// @version    0.4.0
+/// @since      0.2.0
 public final class MaxByGatherer<T, C extends Comparable<C>> implements Gatherer<T, MaxByGatherer.MaxByGathererState<T>, T> {
-    /** The selector function. */
+    /// The selector function.
     private final Function<T, C> selector;
 
-    /**
-     * The constructor.
-     *
-     * @param selector java.util.function.Function&lt;T, A&gt;
-     */
+    /// The constructor.
+    ///
+    /// @param  selector java.util.function.Function<T, A>
     public MaxByGatherer(final Function<T, C> selector) {
         this.selector = Objects.requireNonNull(selector);
     }
 
-    /**
-     * A function that produces an instance of the intermediate
-     * state used for this gathering operation.
-     *
-     * @return java.util.function.Supplier&lt;java.util.Map&lt;A, T&gt;&gt;
-     */
+    /// A function that produces an instance of the intermediate
+    /// state used for this gathering operation.
+    ///
+    /// @return java.util.function.Supplier<java.util.Map&<A, T>>
     @Override
     public Supplier<MaxByGathererState<T>> initializer() {
         return MaxByGathererState::new;
     }
 
-    /**
-     * A function which integrates provided elements,
-     * potentially using the provided intermediate state,
-     * optionally producing output to the provided
-     * downstream type.
-     *
-     * @return java.util.stream.Gatherer.Integrator&lt;net.jmp.demo.java22.gatherers.MaxByGathererState&lt;T&gt;, T, T&gt;
-     */
+    /// A function which integrates provided elements,
+    /// potentially using the provided intermediate state,
+    /// optionally producing output to the provided
+    /// downstream type.
+    ///
+    /// @return java.util.stream.Gatherer.Integrator<net.jmp.demo.java23.gatherers.MaxByGathererState<T>, T, T>
     @Override
     public Integrator<MaxByGathererState<T>, T, T> integrator() {
         /*
@@ -106,12 +101,10 @@ public final class MaxByGatherer<T, C extends Comparable<C>> implements Gatherer
         });
     }
 
-    /**
-     * A function which accepts two intermediate states and combines them into one.
-     * Used for parallel streams to combine states from different segments.
-     *
-     * @return  java.util.function.BinaryOperator&lt;net.jmp.demo.java22.gatherers.MaxByGathererState&lt;T&gt;&gt;
-     */
+    /// A function which accepts two intermediate states and combines them into one.
+    /// Used for parallel streams to combine states from different segments.
+    ///
+    /// @return java.util.function.BinaryOperator<net.jmp.demo.java23.gatherers.MaxByGathererState<T>>
     @Override
     public BinaryOperator<MaxByGathererState<T>> combiner() {
         /*
@@ -146,14 +139,12 @@ public final class MaxByGatherer<T, C extends Comparable<C>> implements Gatherer
         };
     }
 
-    /**
-     * A function which accepts the final intermediate state and a
-     * downstream object, allowing to perform a final action at the
-     * end of input elements. The lambda is the state (A) and the
-     * result type (R).
-     *
-     * @return  java.util.function.BiConsumer&lt;net.jmp.demo.java22.gatherers.MaxByGathererState&lt;T&gt;, java.util.stream.Gatherer.Downstream&gt;
-     */
+    /// A function which accepts the final intermediate state and a
+    /// downstream object, allowing to perform a final action at the
+    /// end of input elements. The lambda is the state (A) and the
+    /// result type (R).
+    ///
+    /// @return java.util.function.BiConsumer<net.jmp.demo.java23.gatherers.MaxByGathererState<T>, java.util.stream.Gatherer.Downstream<? super T>>
     @Override
     public BiConsumer<MaxByGathererState<T>, Downstream<? super T>> finisher () {
         return (state, downstream) -> downstream.push(state.maxElement);
@@ -168,6 +159,7 @@ public final class MaxByGatherer<T, C extends Comparable<C>> implements Gatherer
             super();
         }
 
+        /// The maximum element.
         T maxElement;
     }
 }
