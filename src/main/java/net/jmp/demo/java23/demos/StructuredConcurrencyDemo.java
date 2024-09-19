@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)StructuredConcurrencyDemo.java    0.5.0   09/19/2024
  * (#)StructuredConcurrencyDemo.java    0.4.0   09/19/2024
  * (#)StructuredConcurrencyDemo.java    0.3.0   09/18/2024
  *
@@ -27,30 +28,19 @@ package net.jmp.demo.java23.demos;
  * SOFTWARE.
  */
 
-import java.time.Instant;
-
-import java.util.List;
-import java.util.UUID;
-
-import java.util.concurrent.*;
-
-import java.util.function.Supplier;
-
-import java.util.stream.Stream;
+import module java.base;
+import module org.slf4j;
 
 import net.jmp.demo.java23.scopes.CustomScope;
 
 import static net.jmp.demo.java23.util.LoggerUtils.*;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /// A class the demonstrates using structured concurrency.
 ///
 /// References
 /// - [JEP 462: Structured Concurrency (Second Preview)](https://openjdk.org/jeps/462)
 ///
-/// @version    0.4.0
+/// @version    0.5.0
 /// @since      0.3.0
 public final class StructuredConcurrencyDemo implements Demo {
     /// The logger.

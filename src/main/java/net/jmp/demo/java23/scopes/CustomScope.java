@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.scopes;
 
 /*
+ * (#)CustomScope.java  0.5.0   09/19/2024
  * (#)CustomScope.java  0.4.0   09/19/2024
  * (#)CustomScope.java  0.3.0   09/18/2024
  *
@@ -27,18 +28,13 @@ package net.jmp.demo.java23.scopes;
  * SOFTWARE.
  */
 
-import java.util.Queue;
-
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.StructuredTaskScope;
-
-import java.util.stream.Stream;
+import module java.base;
 
 /// A custom scope class used by
 /// the structured concurreny demo.
 ///
 /// @param  <T> The type of element
-/// @version    0.4.0
+/// @version    0.5.0
 /// @since      0.3.0
 public final class CustomScope<T> extends StructuredTaskScope<T> {
     /// A queue of completed results.

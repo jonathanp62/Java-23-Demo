@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.gatherers;
 
 /*
+ * (#)MapNotNullGatherer.java   0.5.0   09/19/2024
  * (#)MapNotNullGatherer.java   0.4.0   09/19/2024
  * (#)MapNotNullGatherer.java   0.2.0   09/18/2024
  *
@@ -27,11 +28,7 @@ package net.jmp.demo.java23.gatherers;
  * SOFTWARE.
  */
 
-import java.util.Objects;
-
-import java.util.function.Function;
-
-import java.util.stream.Gatherer;
+import module java.base;
 
 /// This gatherer filters out the nulls and applies a transformation to the remaining elements.
 /// The optional initializer operation is not present in this gatherer.
@@ -41,7 +38,7 @@ import java.util.stream.Gatherer;
 /// @param  <T> The type of input elements to the gathering operation
 /// @param  <R> The type of output elements from the gatherer operation
 ///
-/// @version    0.4.0
+/// @version    0.5.0
 /// @since      0.2.0
 public final class MapNotNullGatherer<T, R> implements Gatherer<T, T, R> {
     /// The mapping function.

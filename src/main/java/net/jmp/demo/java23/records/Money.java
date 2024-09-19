@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.records;
 
 /*
+ * (#)Money.java    0.5.0   09/19/2024
  * (#)Money.java    0.4.0   09/19/2024
  * (#)Money.java    0.2.0   09/18/2024
  *
@@ -27,16 +28,14 @@ package net.jmp.demo.java23.records;
  * SOFTWARE.
  */
 
-import java.math.BigDecimal;
-
-import java.util.Currency;
+import module java.base;
 
 /// A money record. It is used
 /// by the stream gatherers demo.
 ///
 /// @param   amount     java.math.BigDecimal
 /// @param   currency   java.util.Currency
-/// @version            0.4.0
+/// @version            0.5.0
 /// @since              0.2.0
 public record Money(BigDecimal amount, Currency currency) {
     /// Method that adds some money.

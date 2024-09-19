@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.gatherers;
 
 /*
+ * (#)DistinctByGatherer.java   0.5.0   09/19/2024
  * (#)DistinctByGatherer.java   0.4.0   09/19/2024
  * (#)DistinctByGatherer.java   0.2.0   09/18/2024
  *
@@ -27,14 +28,7 @@ package net.jmp.demo.java23.gatherers;
  * SOFTWARE.
  */
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
-import java.util.function.Function;
-import java.util.function.Supplier;
-
-import java.util.stream.Gatherer;
+import module java.base;
 
 /// This gatherer ensures stream elements are unique based on a selector function.
 /// The optional combiner operation is not present in this gatherer.
@@ -43,7 +37,7 @@ import java.util.stream.Gatherer;
 /// @param  <T> The type of input elements to the gathering operation
 /// @param  <A> The potentially mutable state type of the gathering operation
 ///
-/// @version    0.4.0
+/// @version    0.5.0
 /// @since      0.2.0
 public final class DistinctByGatherer<T, A> implements Gatherer<T, Set<A>, T> {
     /// The selector function.

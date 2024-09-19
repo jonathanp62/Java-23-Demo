@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)StreamGatherersDemo.java  0.5.0   09/19/2024
  * (#)StreamGatherersDemo.java  0.4.0   09/19/2024
  * (#)StreamGatherersDemo.java  0.2.0   09/18/2024
  *
@@ -27,17 +28,8 @@ package net.jmp.demo.java23.demos;
  * SOFTWARE.
  */
 
-import java.math.BigDecimal;
-
-import java.util.Arrays;
-import java.util.Currency;
-import java.util.List;
-
-import java.util.function.Function;
-
-import java.util.stream.Gatherer;
-import java.util.stream.Gatherers;
-import java.util.stream.Stream;
+import module java.base;
+import module org.slf4j;
 
 import net.jmp.demo.java23.gatherers.*;
 
@@ -47,9 +39,6 @@ import net.jmp.demo.java23.util.GatherersFactory;
 
 import static net.jmp.demo.java23.util.LoggerUtils.*;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /// The class that demonstrates built-in stream gatherers
 /// as well as composing custom ones.
 ///
@@ -58,7 +47,7 @@ import org.slf4j.LoggerFactory;
 /// - [Stream Gatherers In Practice Part 2](https://softwaremill.com/stream-gatherers-in-practice-part-2/)
 /// - [Java Stream Gather Example](https://github.com/lukaszrola/java-stream-gather-example)
 ///
-/// @version    0.4.0
+/// @version    0.5.0
 /// @since      0.2.0
 public final class StreamGatherersDemo implements Demo {
     /// The logger.

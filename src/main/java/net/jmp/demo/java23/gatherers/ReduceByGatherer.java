@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.gatherers;
 
 /*
+ * (#)ReduceByGatherer.java 0.5.0   09/19/2024
  * (#)ReduceByGatherer.java 0.4.0   09/19/2024
  * (#)ReduceByGatherer.java 0.2.0   09/18/2024
  *
@@ -27,21 +28,16 @@ package net.jmp.demo.java23.gatherers;
  * SOFTWARE.
  */
 
-import java.util.*;
-
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-
-import java.util.function.Supplier;
-
-import java.util.stream.Gatherer;
+import module java.base;
 
 /// This gatherer aggregates elements in a stream based on a selector function.
 /// The optional combiner operation is not present in this gatherer.
 ///
 /// @param  <T> The type of input elements to the gathering operation
 /// @param  <A> The potentially mutable state type of the gathering operation
+///
+/// @version    0.5.0
+/// @since      0.2.0
 public final class ReduceByGatherer<T, A> implements Gatherer<T, Map<A, T>, T>  {
     /// The selector function.
     private final Function<T, A> selector;

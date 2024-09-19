@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)BeforeSuperDemo.java  0.5.0   09/19/2024
  * (#)BeforeSuperDemo.java  0.4.0   09/19/2024
  * (#)BeforeSuperDemo.java  0.3.0   09/18/2024
  *
@@ -27,12 +28,10 @@ package net.jmp.demo.java23.demos;
  * SOFTWARE.
  */
 
-import java.util.Objects;
+import module java.base;
+import module org.slf4j;
 
 import static net.jmp.demo.java23.util.LoggerUtils.*;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /// A class the demonstrates statements before 'super()' in a constructor.
 /// This allows developers to place essential initialization logic before
@@ -42,7 +41,7 @@ import org.slf4j.LoggerFactory;
 /// access instance variables or execute methods and access to "this" is
 /// prohibited.
 ///
-/// @version    0.4.0
+/// @version    0.5.0
 /// @since      0.3.0
 public final class BeforeSuperDemo implements Demo {
     /// The logger.

@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)UnnamedVariablesDemo.java 0.5.0   09/19/2024
  * (#)UnnamedVariablesDemo.java 0.4.0   09/19/2024
  * (#)UnnamedVariablesDemo.java 0.3.0   09/18/2024
  *
@@ -27,18 +28,14 @@ package net.jmp.demo.java23.demos;
  * SOFTWARE.
  */
 
-import java.util.*;
-
-import java.util.concurrent.ForkJoinPool;
+import module java.base;
+import module org.slf4j;
 
 import static net.jmp.demo.java23.util.LoggerUtils.*;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /// A class the demonstrates using unnamed variables.
 ///
-/// @version    0.4.0
+/// @version    0.5.0
 /// @since      0.3.0
 public final class UnnamedVariablesDemo implements Demo {
     /// The logger.

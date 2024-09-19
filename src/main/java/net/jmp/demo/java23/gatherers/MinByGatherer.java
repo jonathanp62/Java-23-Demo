@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.gatherers;
 
 /*
+ * (#)MinByGatherer.java    0.5.0   09/19/2024
  * (#)MinByGatherer.java    0.4.0   09/19/2024
  * (#)MinByGatherer.java    0.2.0   09/18/2024
  *
@@ -27,21 +28,14 @@ package net.jmp.demo.java23.gatherers;
  * SOFTWARE.
  */
 
-import java.util.Objects;
-
-import java.util.function.BiConsumer;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
-import java.util.function.Supplier;
-
-import java.util.stream.Gatherer;
+import module java.base;
 
 /// This gatherer designed to find the minimum element in a stream based on a selector function.
 ///
 /// @param   <T>    The type of input elements to the gathering operation
 /// @param   <C>    A type that extends Comparable; T must extend Comparable
 ///
-/// @version    0.4.0
+/// @version    0.5.0
 /// @since      0.2.0
 public class MinByGatherer<T, C extends Comparable<C>> implements Gatherer<T, MinByGatherer.MinByGathererState<T>, T>  {
     /// The selector function.

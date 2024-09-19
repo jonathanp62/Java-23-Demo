@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.gatherers;
 
 /*
+ * (#)FindLastGatherer.java 0.5.0   09/19/2024
  * (#)FindLastGatherer.java 0.4.0   09/19/2024
  * (#)FindLastGatherer.java 0.2.0   09/18/2024
  *
@@ -27,20 +28,14 @@ package net.jmp.demo.java23.gatherers;
  * SOFTWARE.
  */
 
-import java.util.*;
-
-import java.util.function.BiConsumer;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
-
-import java.util.stream.Gatherer;
+import module java.base;
 
 /// This gatherer filters out items based on a predicate function and returns the last.
 /// The optional combiner operation is not present in this gatherer.
 ///
 /// @param  <T> The type of input elements to the gathering operation
 ///
-/// @version    0.4.0
+/// @version    0.5.0
 /// @since      0.2.0
 public final class FindLastGatherer<T>  implements Gatherer<T, List<T>, T> {
     /// The predicate function.

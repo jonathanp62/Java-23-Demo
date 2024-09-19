@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.util;
 
 /*
+ * (#)DemoGatherers.java    0.5.0   09/19/2024
  * (#)DemoGatherers.java    0.4.0   09/19/2024
  * (#)DemoGatherers.java    0.2.0   09/18/2024
  *
@@ -27,15 +28,13 @@ package net.jmp.demo.java23.util;
  * SOFTWARE.
  */
 
-import java.util.function.BiFunction;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import module java.base;
 
 import net.jmp.demo.java23.gatherers.*;
 
 /// A factory class for gatherers.
 ///
-/// @version    0.4.0
+/// @version    0.5.0
 /// @since      0.2.0
 public final class GatherersFactory {
     /// The default constructor.
