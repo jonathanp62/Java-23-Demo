@@ -1,13 +1,10 @@
 package net.jmp.demo.java23;
 
 /*
+ * (#)Main.java 0.4.0   09/19/2024
  * (#)Main.java 0.3.0   09/18/2024
  * (#)Main.java 0.2.0   09/18/2024
  * (#)Main.java 0.1.0   09/18/2024
- *
- * @author   Jonathan Parker
- * @version  0.3.0
- * @since    0.1.0
  *
  * MIT License
  *
@@ -43,30 +40,31 @@ import static net.jmp.demo.java23.util.LoggerUtils.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * The main class.
- */
+/// The main class. This class is instantiated
+/// and run from the bootstrap class when the
+/// application starts.
+///
+/// @version    0.4.0
+/// @since      0.1.0
 final class Main implements Runnable {
-    /** The logger. */
+    /// The logger.
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
-    /** The command line arguments. */
+    /// The command line arguments.
     private final String[] arguments;
 
-    /**
-     * A constructor that takes the
-     * command line arguments from
-     * the bootstrap class.
-     */
+    /// A constructor that takes the
+    /// command line arguments from
+    /// the bootstrap class.
+    ///
+    /// @param  args    java.lang.String[]
     Main(final String[] args) {
         super();
 
         this.arguments = Objects.requireNonNull(args);
     }
 
-    /**
-     * The run method.
-     */
+    /// The run method.
     @Override
     public void run() {
         if (this.logger.isTraceEnabled()) {
@@ -86,9 +84,7 @@ final class Main implements Runnable {
         }
     }
 
-    /**
-     * Method that runs the demo classes.
-     */
+    /// Method that runs the demo classes.
     private void runDemos() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());

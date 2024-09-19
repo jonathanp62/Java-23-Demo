@@ -6,10 +6,6 @@ package net.jmp.demo.java23;
  * (#)Version.java  0.2.0   09/18/2024
  * (#)Version.java  0.1.0   09/18/2024
  *
- * @author    Jonathan Parker
- * @version   0.4.0
- * @since     0.1.0
- *
  * MIT License
  *
  * Copyright (c) 2024 Jonathan M. Parker
@@ -33,16 +29,16 @@ package net.jmp.demo.java23;
  * SOFTWARE.
  */
 
-/**
- * The version class.
- */
+/// The version class. This class simply
+/// provides a string constant.
+///
+/// @version    0.4.0
+/// @since      0.1.0
 final class Version {
-    /** The version. */
+    /// The version.
     static final String VERSION_STRING = "0.4.0";
 
-    /**
-     * The default constructor.
-     */
+    /// The default constructor.
     private Version() {
         super();
     }

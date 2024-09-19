@@ -1,11 +1,8 @@
 package net.jmp.demo.java23;
 
 /*
+ * (#)Name.java 0.4.0   09/19/2024
  * (#)Name.java 0.1.0   09/18/2024
- *
- * @author    Jonathan Parker
- * @version   0.1.0
- * @since     0.1.0
  *
  * MIT License
  *
@@ -30,18 +27,16 @@ package net.jmp.demo.java23;
  * SOFTWARE.
  */
 
-/**
- * The name class.
- */
+/// The name class. This class simply
+/// provides a constant.
+///
+/// @version    0.4.0
+/// @since      0.1.0
 final class Name {
-    /**
-     * The name.
-     */
+    /// The name.
     static final String NAME_STRING = "Java-23-Demo";
 
-    /**
-     * The default constructor.
-     */
+    /// The default constructor.
     private Name() {
         super();
     }
