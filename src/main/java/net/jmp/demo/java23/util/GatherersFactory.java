@@ -1,11 +1,8 @@
 package net.jmp.demo.java23.util;
 
 /*
+ * (#)DemoGatherers.java    0.4.0   09/19/2024
  * (#)DemoGatherers.java    0.2.0   09/18/2024
- *
- * @author   Jonathan Parker
- * @version  0.2.0
- * @since    0.2.0
  *
  * MIT License
  *
@@ -36,97 +33,82 @@ import java.util.function.Predicate;
 
 import net.jmp.demo.java23.gatherers.*;
 
-/**
- * A factory class for gatherers.
- */
+/// A factory class for gatherers.
+///
+/// @version    0.4.0
+/// @since      0.2.0
 public final class GatherersFactory {
-    /**
-     * The default constructor.
-     */
+    /// The default constructor.
     private GatherersFactory() {
         super();
     }
 
-    /**
-     * A distinct-by gatherer.
-     *
-     * @param   selector    java.util.function.Function&lt;T, A&gt;
-     * @return              net.jmp.demo.java23.gatherers.DistinctByGatherer&lt;T, A&gt;
-     * @param   <T>         The type of input elements to the gathering operation
-     * @param   <A>         The potentially mutable state type of the gathering operation
-     */
+    /// A distinct-by gatherer.
+    ///
+    /// @param  <T>         The type of input elements to the gathering operation
+    /// @param  <A>         The potentially mutable state type of the gathering operation
+    /// @param  selector    java.util.function.Function<T, A>
+    /// @return             net.jmp.demo.java23.gatherers.DistinctByGatherer<T, A>
     public static <T, A> DistinctByGatherer<T, A> distinctBy(final Function<T, A> selector) {
         return new DistinctByGatherer<>(selector);
     }
 
-    /**
-     * A reduce-by gatherer.
-     *
-     * @param   selector    java.util.function.Function&lt;T, A&gt;
-     * @param   reducer     java.util.function.BiFunction&lt;T, T, T&gt;
-     * @return              net.jmp.demo.java23.gatherers.ReduceByGatherer&lt;T, A&gt;
-     * @param   <T>         The type of input elements to the gathering operation
-     * @param   <A>         The potentially mutable state type of the gathering operation
-     */
+    /// A reduce-by gatherer.
+    ///
+    /// @param   <T>         The type of input elements to the gathering operation
+    /// @param   <A>         The potentially mutable state type of the gathering operation
+    /// @param   selector    java.util.function.Function>T, A>
+    /// @param   reducer     java.util.function.BiFunction<T, T, T>
+    /// @return              net.jmp.demo.java23.gatherers.ReduceByGatherer<T, A>
     public static <T, A> ReduceByGatherer<T, A> reduceBy(final Function<T, A> selector,
                                                          final BiFunction<T, T, T> reducer) {
         return new ReduceByGatherer<>(selector, reducer);
     }
 
-    /**
-     * A max-by gatherer.
-     *
-     * @param   selector    java.util.function.Function&lt;T, C&gt;
-     * @return              net.jmp.demo.java23.gatherers.MaxByGatherer&lt;T, C&gt;
-     * @param   <T>         The type of input elements to the gathering operation
-     * @param   <C>         A type that extends Comparable; T must extend Comparable
-     */
+    /// A max-by gatherer.
+    ///
+    /// @param  <T>         The type of input elements to the gathering operation
+    /// @param  <C>         A type that extends Comparable; T must extend Comparable
+    /// @param  selector    java.util.function.Function<T, C>
+    /// @return             net.jmp.demo.java23.gatherers.MaxByGatherer<T, C extends Comparable<C>>
     public static <T, C extends Comparable<C>> MaxByGatherer<T, C> maxBy(final Function<T, C> selector) {
         return new MaxByGatherer<>(selector);
     }
 
-    /**
-     * A min-by gatherer.
-     *
-     * @param   selector    java.util.function.Function&lt;T, C&gt;
-     * @return              net.jmp.demo.java23.gatherers.MinByGatherer&lt;T, C&gt;
-     * @param   <T>         The type of input elements to the gathering operation
-     * @param   <C>         A type that extends Comparable; T must extend Comparable
-     */
+    /// A min-by gatherer.
+    ///
+    /// @param  <T>         The type of input elements to the gathering operation
+    /// @param  <C>         A type that extends Comparable; T must extend Comparable
+    /// @param  selector    java.util.function.Function<T, C>
+    /// @return             net.jmp.demo.java23.gatherers.MinByGatherer<T, C extends Comparable<C>>
     public static <T, C extends Comparable<C>> MinByGatherer<T, C> minBy(final Function<T, C> selector) {
         return new MinByGatherer<>(selector);
     }
 
-    /**
-     * A map not null gatherer.
-     *
-     * @param   mapper  java.util.function.Function&lt;T, R&gt;
-     * @return          net.jmp.demo.java23.gatherers.MapNotNullGatherer&lt;T, R&gt;
-     * @param   <T>     The type of input elements to the gathering operation
-     * @param   <R>     The type of output elements from the gatherer operation
-     */
+    /// A map not null gatherer.
+    ///
+    /// @param  <T>     The type of input elements to the gathering operation
+    /// @param  <R>     The type of output elements from the gatherer operation
+    /// @param  mapper  java.util.function.Function<T, R>
+    /// @return         net.jmp.demo.java23.gatherers.MapNotNullGatherer<T, R>
     public static <T, R> MapNotNullGatherer<T, R> mapNotNull(final Function<T, R> mapper) {
         return new MapNotNullGatherer<>(mapper);
     }
 
-    /**
-     * A find first gatherer.
-     *
-     * @param   predicate   java.util.function.Predicate&lt;T&gt;
-     * @return              net.jmp.demo.java23.gatherers.FindFirstGatherer&lt;T&gt;
-     * @param   <T>         The type of input elements to the gathering operation
-     */
+    /// A find first gatherer.
+    ///
+    /// @param  <T>         The type of input elements to the gathering operation
+    /// @param  predicate   java.util.function.Predicate<T>
+    /// @return             net.jmp.demo.java23.gatherers.FindFirstGatherer<T>
     public static <T> FindFirstGatherer<T> findFirst(final Predicate<T> predicate) {
         return new FindFirstGatherer<>(predicate);
     }
 
-    /**
-     * A find last gatherer.
-     *
-     * @param   predicate   java.util.function.Predicate&lt;T&gt;
-     * @return              net.jmp.demo.java23.gatherers.FindFirstGatherer&lt;T&gt;
-     * @param   <T>         The type of input elements to the gathering operation
-     */
+    /// A find last gatherer.
+    ///
+    /// @param  <T>         The type of input elements to the gathering operation
+    /// @param  predicate   java.util.function.Predicate<T>
+    /// @return             net.jmp.demo.java23.gatherers.FindLastGatherer<T>
     public static <T> FindLastGatherer<T> findLast(final Predicate<T> predicate) {
         return new FindLastGatherer<>(predicate);
     }

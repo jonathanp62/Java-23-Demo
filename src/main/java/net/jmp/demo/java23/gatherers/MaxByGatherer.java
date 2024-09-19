@@ -4,10 +4,6 @@ package net.jmp.demo.java23.gatherers;
  * (#)MaxByGatherer.java    0.4.0   09/19/2024
  * (#)MaxByGatherer.java    0.2.0   09/18/2024
  *
- * @author   Jonathan Parker
- * @version  0.4.0
- * @since    0.2.0
- *
  * MIT License
  *
  * Copyright (c) 2024 Jonathan M. Parker
