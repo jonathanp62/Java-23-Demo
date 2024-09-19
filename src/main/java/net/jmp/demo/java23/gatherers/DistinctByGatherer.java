@@ -1,11 +1,8 @@
 package net.jmp.demo.java23.gatherers;
 
 /*
+ * (#)DistinctByGatherer.java   0.4.0   09/19/2024
  * (#)DistinctByGatherer.java   0.2.0   09/18/2024
- *
- * @author   Jonathan Parker
- * @version  0.2.0
- * @since    0.2.0
  *
  * MIT License
  *
@@ -39,46 +36,41 @@ import java.util.function.Supplier;
 
 import java.util.stream.Gatherer;
 
-/**
- * This gatherer ensures stream elements are unique based on a selector function.
- * The optional combiner operation is not present in this gatherer.
- * The optional finisher operation is not present in this gatherer.
- *
- * @param   <T> The type of input elements to the gathering operation
- * @param   <A> The potentially mutable state type of the gathering operation
- */
+/// This gatherer ensures stream elements are unique based on a selector function.
+/// The optional combiner operation is not present in this gatherer.
+/// The optional finisher operation is not present in this gatherer.
+///
+/// @param  <T> The type of input elements to the gathering operation
+/// @param  <A> The potentially mutable state type of the gathering operation
+///
+/// @version    0.4.0
+/// @since      0.2.0
 public final class DistinctByGatherer<T, A> implements Gatherer<T, Set<A>, T> {
-    /** The selector function. */
+    /// The selector function.
     private final Function<T, A> selector;
 
-    /**
-     * The constructor.
-     *
-     * @param   selector    java.util.function.Function&lt;T, A&gt;
-     */
+    /// The constructor.
+    ///
+    /// @param  selector    java.util.function.Function<T, A>
     public DistinctByGatherer(final Function<T, A> selector) {
         this.selector = Objects.requireNonNull(selector);
     }
 
-    /**
-     * A function that produces an instance of the intermediate
-     * state used for this gathering operation.
-     *
-     * @return  java.util.function.Supplier&lt;java.util.Set&lt;A&gt;&gt;
-     */
+    /// A function that produces an instance of the intermediate
+    /// state used for this gathering operation.
+    ///
+    /// @return java.util.function.Supplier<java.util.Set<A>>
     @Override
     public Supplier<Set<A>> initializer() {
         return HashSet::new;
     }
 
-    /**
-     * A function which integrates provided elements,
-     * potentially using the provided intermediate state,
-     * optionally producing output to the provided
-     * downstream type.
-     *
-     * @return  java.util.stream.Gatherer.Integrator&lt;java.util.Set&lt;A&gt;, T, T&gt;
-     */
+    /// A function which integrates provided elements,
+    /// potentially using the provided intermediate state,
+    /// optionally producing output to the provided
+    /// downstream type.
+    ///
+    /// @return java.util.stream.Gatherer.Integrator<java.util.Set<A>, T, T>
     @Override
     public Integrator<Set<A>, T, T> integrator() {
         /*

@@ -1,11 +1,8 @@
 package net.jmp.demo.java23.gatherers;
 
 /*
+ * (#)FindLastGatherer.java 0.4.0   09/19/2024
  * (#)FindLastGatherer.java 0.2.0   09/18/2024
- *
- * @author   Jonathan Parker
- * @version  0.2.0
- * @since    0.2.0
  *
  * MIT License
  *
@@ -38,44 +35,39 @@ import java.util.function.Supplier;
 
 import java.util.stream.Gatherer;
 
-/**
- * This gatherer filters out items based on a predicate function and returns the last.
- * The optional combiner operation is not present in this gatherer.
- *
- * @param   <T> The type of input elements to the gathering operation
- */
+/// This gatherer filters out items based on a predicate function and returns the last.
+/// The optional combiner operation is not present in this gatherer.
+///
+/// @param  <T> The type of input elements to the gathering operation
+///
+/// @version    0.4.0
+/// @since      0.2.0
 public final class FindLastGatherer<T>  implements Gatherer<T, List<T>, T> {
-    /** The predicate function. */
+    /// The predicate function.
     private final Predicate<T> predicate;
 
-    /**
-     * The constructor.
-     *
-     * @param   predicate   java.util.function.Predicate&lt;T&gt;
-     */
+    /// The constructor.
+    ///
+    /// @param  predicate   java.util.function.Predicate<T>
     public FindLastGatherer(final Predicate<T> predicate) {
         this.predicate = Objects.requireNonNull(predicate);
     }
 
-    /**
-     * A function that produces an instance of the intermediate
-     * state used for this gathering operation.
-     *
-     * @return  java.util.function.Supplier&lt;java.util.List&lt;A&gt;&gt;
-     */
+    /// A function that produces an instance of the intermediate
+    /// state used for this gathering operation.
+    ///
+    /// @return java.util.function.Supplier<java.util.List<T>>
     @Override
     public Supplier<List<T>> initializer() {
         return ArrayList::new;
     }
 
-    /**
-     * A function which integrates provided elements,
-     * potentially using the provided intermediate state,
-     * optionally producing output to the provided
-     * downstream type.
-     *
-     * @return  java.util.stream.Gatherer.Integrator&lt;java.util.List&lt;T&gt;, T, T&gt;
-     */
+    /// A function which integrates provided elements,
+    /// potentially using the provided intermediate state,
+    /// optionally producing output to the provided
+    /// downstream type.
+    ///
+    /// @return java.util.stream.Gatherer.Integrator<java.util.List<T>, T, T>
     @Override
     public Integrator<List<T>, T, T> integrator() {
         /*
@@ -95,14 +87,12 @@ public final class FindLastGatherer<T>  implements Gatherer<T, List<T>, T> {
         });
     }
 
-    /**
-     * A function which accepts the final intermediate state and a
-     * downstream object, allowing to perform a final action at the
-     * end of input elements. The lambda is the state (A) and the
-     * result type (R).
-     *
-     * @return  java.util.function.BiConsumer&lt;java.util.List&lt;T&gt;, java.util.stream.Gatherer.Downstream&gt;
-     */
+    /// A function which accepts the final intermediate state and a
+    /// downstream object, allowing to perform a final action at the
+    /// end of input elements. The lambda is the state (A) and the
+    /// result type (R).
+    ///
+    // @return  java.util.function.BiConsumer<java.util.List<T>, java.util.stream.Gatherer.Downstream<? super T>>
     @Override
     public BiConsumer<List<T>, Downstream<? super T>> finisher () {
         return (state, downstream) -> {

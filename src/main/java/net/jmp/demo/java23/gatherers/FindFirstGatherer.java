@@ -1,11 +1,8 @@
 package net.jmp.demo.java23.gatherers;
 
 /*
+ * (#)FindFirstGatherer.java    0.4.0   09/19/2024
  * (#)FindFirstGatherer.java    0.2.0   09/18/2024
- *
- * @author   Jonathan Parker
- * @version  0.2.0
- * @since    0.2.0
  *
  * MIT License
  *
@@ -36,35 +33,32 @@ import java.util.function.Predicate;
 
 import java.util.stream.Gatherer;
 
-/**
- * This gatherer filters out items based on a predicate function and returns the first.
- * The optional initializer operation is not present in this gatherer.
- * The optional combiner operation is not present in this gatherer.
- * The optional finisher operation is not present in this gatherer.
- *
- * @param   <T> The type of input elements to the gathering operation
- */
+/// This gatherer filters out items based on a predicate function and returns the first.
+/// The optional initializer operation is not present in this gatherer.
+/// The optional combiner operation is not present in this gatherer.
+/// The optional finisher operation is not present in this gatherer.
+///
+/// @param  <T> The type of input elements to the gathering operation
+///
+/// @version    0.4.0
+/// @since      0.2.0
 public final class FindFirstGatherer<T> implements Gatherer<T, T, T> {
-    /** The predicate function. */
+    /// The predicate function.
     private final Predicate<T> predicate;
 
-    /**
-     * The constructor.
-     *
-     * @param   predicate   java.util.function.Predicate&lt;T&gt;
-     */
+    /// The constructor.
+    ///
+    /// @param  predicate   java.util.function.Predicate<T>
     public FindFirstGatherer(final Predicate<T> predicate) {
         this.predicate = Objects.requireNonNull(predicate);
     }
 
-    /**
-     * A function which integrates provided elements,
-     * potentially using the provided intermediate state,
-     * optionally producing output to the provided
-     * downstream type.
-     *
-     * @return  java.util.stream.Gatherer.Integrator&lt;T, T, T&gt;
-     */
+    /// A function which integrates provided elements,
+    /// potentially using the provided intermediate state,
+    /// optionally producing output to the provided
+    /// downstream type.
+    ///
+    /// @return java.util.stream.Gatherer.Integrator<T, T, T>
     @Override
     public Integrator<T, T, T> integrator() {
         /*

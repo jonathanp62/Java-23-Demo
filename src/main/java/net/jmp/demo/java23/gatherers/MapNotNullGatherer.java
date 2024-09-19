@@ -4,10 +4,6 @@ package net.jmp.demo.java23.gatherers;
  * (#)MapNotNullGatherer.java   0.4.0   09/19/2024
  * (#)MapNotNullGatherer.java   0.2.0   09/18/2024
  *
- * @author   Jonathan Parker
- * @version  0.4.0
- * @since    0.2.0
- *
  * MIT License
  *
  * Copyright (c) 2024 Jonathan M. Parker
@@ -37,36 +33,33 @@ import java.util.function.Function;
 
 import java.util.stream.Gatherer;
 
-/**
- * This gatherer filters out the nulls and applies a transformation to the remaining elements.
- * The optional initializer operation is not present in this gatherer.
- * The optional combiner operation is not present in this gatherer.
- * The optional finisher operation is not present in this gatherer.
- *
- * @param   <T> The type of input elements to the gathering operation
- * @param   <R> The type of output elements from the gatherer operation
- */
+/// This gatherer filters out the nulls and applies a transformation to the remaining elements.
+/// The optional initializer operation is not present in this gatherer.
+/// The optional combiner operation is not present in this gatherer.
+/// The optional finisher operation is not present in this gatherer.
+///
+/// @param  <T> The type of input elements to the gathering operation
+/// @param  <R> The type of output elements from the gatherer operation
+///
+/// @version    0.4.0
+/// @since      0.2.0
 public final class MapNotNullGatherer<T, R> implements Gatherer<T, T, R> {
-    /** The mapping function. */
+    /// The mapping function.
     private final Function<T, R> mapper;
 
-    /**
-     * The constructor.
-     *
-     * @param   mapper  java.util.function.Function&lt;T, R&gt;
-     */
+    /// The constructor.
+    ///
+    /// @param  mapper  java.util.function.Function<T, R>
     public MapNotNullGatherer(final Function<T, R> mapper) {
         this.mapper = Objects.requireNonNull(mapper);
     }
 
-    /**
-     * A function which integrates provided elements,
-     * potentially using the provided intermediate state,
-     * optionally producing output to the provided
-     * downstream type.
-     *
-     * @return  java.util.stream.Gatherer.Integrator&lt;T, T, R&gt;
-     */
+    /// A function which integrates provided elements,
+    /// potentially using the provided intermediate state,
+    ///optionally producing output to the provided
+    /// downstream type.
+    ///
+    /// @return java.util.stream.Gatherer.Integrator<T, T, R>
     @Override
     public Integrator<T, T, R> integrator() {
         /*
