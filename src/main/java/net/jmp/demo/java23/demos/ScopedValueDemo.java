@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)ScopedValueDemo.java  0.7.0   09/20/2024
  * (#)ScopedValueDemo.java  0.5.0   09/19/2024
  * (#)ScopedValueDemo.java  0.4.0   09/19/2024
  * (#)ScopedValueDemo.java  0.2.0   09/18/2024
@@ -33,6 +34,8 @@ import module org.slf4j;
 
 import static net.jmp.demo.java23.util.LoggerUtils.*;
 
+import net.jmp.demo.java23.util.WrappedObject;
+
 /// The class that demonstrates the scoped value.
 ///
 /// A scoped value is a container object that allows
@@ -45,7 +48,7 @@ import static net.jmp.demo.java23.util.LoggerUtils.*;
 /// is set to private so that it cannot be directly accessed
 /// by code in other classes.
 ///
-/// @version    0.5.0
+/// @version    0.7.0
 /// @since      0.2.0
 public final class ScopedValueDemo implements Demo {
     /// The logger.
@@ -81,10 +84,14 @@ public final class ScopedValueDemo implements Demo {
 
     /// Basic usage. Bind 'uuid' to UUID
     /// and pass it to the runnable.
-    private void basic() {
+    ///
+    /// @return boolean
+    private boolean basic() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
         }
+
+        final WrappedObject<Boolean> result = new WrappedObject<>(false);
 
         final String uuid = UUID.randomUUID().toString();
 
@@ -96,6 +103,8 @@ public final class ScopedValueDemo implements Demo {
                     if (this.logger.isInfoEnabled()) {
                         this.logger.info("UUID: {}", UID.get());
 
+                        result.set(UID.isBound());
+
                         if (UID.isBound()) {
                             this.logger.info("UID is bound");
                         }
@@ -103,15 +112,21 @@ public final class ScopedValueDemo implements Demo {
                 });
 
         if (this.logger.isTraceEnabled()) {
-            this.logger.trace(exit());
+            this.logger.trace(exitWith(result.get()));
         }
+
+        return result.get();
     }
 
     /// Multiple bindings.
-    private void multiples() {
+    ///
+    /// @return java.lang.String
+    private String multiples() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
         }
+
+        final WrappedObject<String> result = new WrappedObject<>();
 
         final String uuid = UUID.randomUUID().toString();
         final String name = "Parker";
@@ -124,24 +139,37 @@ public final class ScopedValueDemo implements Demo {
                         this.logger.info("UUID: {}", UID.get());
                         this.logger.info("NAME: {}", NAME.get());
                     }
+
+                    result.set(NAME.get());
                 });
 
         if (this.logger.isTraceEnabled()) {
-            this.logger.trace(exit());
+            this.logger.trace(exitWith(result.get()));
         }
+
+        return result.get();
     }
 
     /// Rebinding a scoped value.
-    private void rebinding() {
+    ///
+    /// @return java.lang.String
+    private String rebinding() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
         }
 
-        ScopedValue.where(NAME, "Jonathan").run(this::bar);
+        final WrappedObject<String> result = new WrappedObject<>();
+
+        ScopedValue.where(NAME, "Jonathan").run(() -> {
+                this.bar();
+                result.set(NAME.get()); // NAME is still bound
+        });
 
         if (this.logger.isTraceEnabled()) {
-            this.logger.trace(exit());
+            this.logger.trace(exitWith(result.get()));
         }
+
+        return result.get();
     }
 
     /// Method bar.
@@ -181,10 +209,14 @@ public final class ScopedValueDemo implements Demo {
     }
 
     /// Inheritance or sharing across threads.
-    private void inheritance() {
+    ///
+    /// @return java.util.List<net.jmp.demo.java23.demos.ScopedValueDemo.ChildTaskInfo>
+    private List<ChildTaskInfo> inheritance() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
         }
+
+        final List<ChildTaskInfo> childTaskInfos = new ArrayList<>();
 
         final Callable<String> childTask1 = () -> {
             if (this.logger.isInfoEnabled()) {
@@ -222,6 +254,10 @@ public final class ScopedValueDemo implements Demo {
 
                 scope.join();
 
+                childTaskInfos.add(new ChildTaskInfo(subtask1.get(), 1));
+                childTaskInfos.add(new ChildTaskInfo(subtask2.get(), 2));
+                childTaskInfos.add(new ChildTaskInfo(subtask3.get(), 3));
+
                 this.logSubtaskStatus(subtask1, 1);
                 this.logSubtaskStatus(subtask2, 2);
                 this.logSubtaskStatus(subtask3, 3);
@@ -232,8 +268,10 @@ public final class ScopedValueDemo implements Demo {
         });
 
         if (this.logger.isTraceEnabled()) {
-            this.logger.trace(exit());
+            this.logger.trace(exitWith(childTaskInfos));
         }
+
+        return childTaskInfos;
     }
 
     /// Log the status of a subtask.
@@ -258,5 +296,12 @@ public final class ScopedValueDemo implements Demo {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(exit());
         }
+    }
+
+    /// A record to include child task information.
+    ///
+    /// @param  name    java.lang.String
+    /// @param  item    int
+    public record ChildTaskInfo(String name, int item) {
     }
 }

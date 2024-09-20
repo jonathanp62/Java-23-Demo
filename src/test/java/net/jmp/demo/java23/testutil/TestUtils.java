@@ -51,4 +51,24 @@ public final class TestUtils {
 
         return t.cast(object);
     }
+
+    /**
+     * Create a list of elements of type T from
+     * a List of wildcard-typed objects.
+     *
+     * @param   <T>         The type of element in the list
+     * @param   list        java.util.List<?>
+     * @param   clazz       The class of type T
+     * @return              java.util.List<T>
+     */
+    public static <T> List<T> listToTypedList(final List<?> list, final Class<T> clazz) {
+        Objects.requireNonNull(list, () -> "List<?> list is null");
+        Objects.requireNonNull(clazz, () -> "Class<T> clazz");
+
+        return list
+                .stream()
+                .filter(clazz::isInstance)
+                .map(clazz::cast)
+                .toList();
+    }
 }
