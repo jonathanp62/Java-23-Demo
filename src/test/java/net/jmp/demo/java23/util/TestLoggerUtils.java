@@ -3,7 +3,6 @@ package net.jmp.demo.java23.util;
 /*
  * (#)TestLoggerUtils.java  0.1.0   09/18/2024
  *
- * @author   Jonathan Parker
  * @version  0.1.0
  * @since    0.1.0
  *
