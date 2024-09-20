@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)BeforeSuperDemo.java  0.7.0   09/20/2024
  * (#)BeforeSuperDemo.java  0.5.0   09/19/2024
  * (#)BeforeSuperDemo.java  0.4.0   09/19/2024
  * (#)BeforeSuperDemo.java  0.3.0   09/18/2024
@@ -41,7 +42,7 @@ import static net.jmp.demo.java23.util.LoggerUtils.*;
 /// access instance variables or execute methods and access to "this" is
 /// prohibited.
 ///
-/// @version    0.5.0
+/// @version    0.7.0
 /// @since      0.3.0
 public final class BeforeSuperDemo implements Demo {
     /// The logger.
@@ -59,12 +60,14 @@ public final class BeforeSuperDemo implements Demo {
             this.logger.trace(entry());
         }
 
-        final var square = new Square(4, 3, "Yellow");
+        final var square = this.newSquare(4, 3, "Yellow");
 
-        this.logger.info(square.toString());
+        if (this.logger.isInfoEnabled()) {
+            this.logger.info(square.toString());
+        }
 
         try {
-            new Square(4, 0, "Orange");
+            final var _ = this.newSquare(4, 0, "Orange");
         } catch (final IllegalArgumentException iae) {
             this.logger.error(iae.getMessage());
         }
@@ -74,10 +77,31 @@ public final class BeforeSuperDemo implements Demo {
         }
     }
 
+    /// Create a new square.
+    ///
+    /// @param  sides   int
+    /// @param  length  int
+    /// @param  color   java.lang.String
+    /// @return         net.jmp.demo.java23.demos.BeforeSuperDemo.Square
+    /// @since          0.7.0
+    private Square newSquare(final int sides, final int length, final String color) {
+        if (this.logger.isTraceEnabled()) {
+            this.logger.trace(entryWith(sides, length, color));
+        }
+
+        final var square = new Square(sides, length, color);
+
+        if (this.logger.isTraceEnabled()) {
+            this.logger.trace(exitWith(square));
+        }
+
+        return square;
+    }
+
     /// A shape class.
-    static class Shape {
+    public static class Shape {
         /// The color.
-        protected String color;
+        public String color;
 
         /// The constructor.
         ///
@@ -90,19 +114,19 @@ public final class BeforeSuperDemo implements Demo {
     }
 
     /// A square class.
-    static final class Square extends Shape {
+    public static final class Square extends Shape {
         /// The number of sides.
-        private final int sides;
+        public final int sides;
 
         /// The length of each side.
-        private final int length;
+        public final int length;
 
         /// The constructor.
         ///
         /// @param  sides   int
         /// @param  length  int
         /// @param  color   java.lang.String
-        Square(final int sides, final int length, final String color) {
+        public Square(final int sides, final int length, final String color) {
             if (sides != 4) {
                 throw new IllegalArgumentException("Squares must have four sides");
             }
