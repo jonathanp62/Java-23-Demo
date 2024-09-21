@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.gatherers;
 
 /*
+ * (#)FindFirstGatherer.java    0.7.0   09/19/2024
  * (#)FindFirstGatherer.java    0.5.0   09/19/2024
  * (#)FindFirstGatherer.java    0.4.0   09/19/2024
  * (#)FindFirstGatherer.java    0.2.0   09/18/2024
@@ -37,11 +38,14 @@ import module java.base;
 ///
 /// @param  <T> The type of input elements to the gathering operation
 ///
-/// @version    0.5.0
+/// @version    0.7.0
 /// @since      0.2.0
 public final class FindFirstGatherer<T> implements Gatherer<T, T, T> {
     /// The predicate function.
     private final Predicate<T> predicate;
+
+    /// True when the predicate function is first satisfied with an element.
+    private boolean isPredicateSatisfied;
 
     /// The constructor.
     ///
@@ -67,13 +71,19 @@ public final class FindFirstGatherer<T> implements Gatherer<T, T, T> {
          */
 
         return Integrator.ofGreedy((_, item, downstream) -> {
-            if (this.predicate.test(item)) {
-                downstream.push(item);
+            if (!this.isPredicateSatisfied) {
+                if (this.predicate.test(item)) {
+                    this.isPredicateSatisfied = true;
 
-                return false;   // No subsequent integration is desired
-            } else {
-                return true;    // True if subsequent integration is desired
+                    downstream.push(item);
+
+                    return false;   // No subsequent integration is desired
+                } else {
+                    return true;    // True if subsequent integration is desired
+                }
             }
+
+            return false;           // No subsequent integration is desired
         });
     }
 }

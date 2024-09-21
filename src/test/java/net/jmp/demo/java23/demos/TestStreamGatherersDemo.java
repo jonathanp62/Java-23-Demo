@@ -31,6 +31,8 @@ package net.jmp.demo.java23.demos;
 
 import module java.base;
 
+import net.jmp.demo.java23.records.Money;
+
 import static net.jmp.demo.java23.testutil.TestUtils.*;
 
 import static org.junit.Assert.*;
@@ -177,5 +179,100 @@ public final class TestStreamGatherersDemo {
         assertEquals("7", results.get(6));
         assertEquals("8", results.get(7));
         assertEquals("9", results.get(8));
+    }
+
+    @Test
+    public void testCustomDistinctBy() throws Exception {
+        final var demo = new StreamGatherersDemo();
+        final var method = StreamGatherersDemo.class.getDeclaredMethod("customDistinctBy", List.class);
+
+        method.setAccessible(true);
+
+        final Object o = method.invoke(demo, this.getMoney());
+        final List<?> list = castToType(List.class, o);
+        final List<Money> results = listToTypedList(list, Money.class);
+
+        assertNotNull(results);
+        assertEquals(2, results.size());
+
+        assertEquals(new Money(BigDecimal.valueOf(12), Currency.getInstance("PLN")), results.get(0));
+        assertEquals(new Money(BigDecimal.valueOf(11), Currency.getInstance("EUR")), results.get(1));
+    }
+
+    @Test
+    public void testCustomReduceByGatherer() throws Exception {
+        final var demo = new StreamGatherersDemo();
+        final var method = StreamGatherersDemo.class.getDeclaredMethod("customReduceByGatherer", List.class);
+
+        method.setAccessible(true);
+
+        final Object o = method.invoke(demo, this.getMoney());
+        final List<?> list = castToType(List.class, o);
+        final List<Money> results = listToTypedList(list, Money.class);
+
+        assertNotNull(results);
+        assertEquals(2, results.size());
+
+        final var expectedEur = new Money(BigDecimal.valueOf(11), Currency.getInstance("EUR"));
+        final var expectedPln = new Money(BigDecimal.valueOf(27), Currency.getInstance("PLN"));
+
+        assertTrue(results.contains(expectedEur));
+        assertTrue(results.contains(expectedPln));
+    }
+
+    @Test
+    public void testCustomMaxByGatherer() throws Exception {
+        final var demo = new StreamGatherersDemo();
+        final var method = StreamGatherersDemo.class.getDeclaredMethod("customMaxByGatherer", List.class);
+
+        method.setAccessible(true);
+
+        final Object o = method.invoke(demo, this.getMoney());
+        final Money result = castToType(Money.class, o);
+
+        assertNotNull(result);
+        assertEquals(new Money(BigDecimal.valueOf(15), Currency.getInstance("PLN")), result);
+    }
+
+    @Test
+    public void testCustomMinByGatherer() throws Exception {
+        final var demo = new StreamGatherersDemo();
+        final var method = StreamGatherersDemo.class.getDeclaredMethod("customMinByGatherer", List.class);
+
+        method.setAccessible(true);
+
+        final Object o = method.invoke(demo, this.getMoney());
+        final Money result = castToType(Money.class, o);
+
+        assertNotNull(result);
+        assertEquals(new Money(BigDecimal.valueOf(11), Currency.getInstance("EUR")), result);
+    }
+
+    @Test
+    public void testCustomMapNotNullGatherer() throws Exception {
+
+    }
+
+    @Test
+    public void testCustomFindFirstGatherer() throws Exception {
+
+    }
+
+    @Test
+    public void testCustomFindLastGatherer() throws Exception {
+
+    }
+
+    @Test
+    public void testCustomGatherAndThen() throws Exception {
+
+    }
+
+    private List<Money> getMoney() {
+        return List.of(
+                new Money(BigDecimal.valueOf(12), Currency.getInstance("PLN")),
+                new Money(BigDecimal.valueOf(11), Currency.getInstance("EUR")),
+                new Money(BigDecimal.valueOf(15), Currency.getInstance("PLN"))
+        );
     }
 }
