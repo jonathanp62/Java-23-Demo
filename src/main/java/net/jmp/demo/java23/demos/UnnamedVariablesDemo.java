@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)UnnamedVariablesDemo.java 0.7.0   09/21/2024
  * (#)UnnamedVariablesDemo.java 0.5.0   09/19/2024
  * (#)UnnamedVariablesDemo.java 0.4.0   09/19/2024
  * (#)UnnamedVariablesDemo.java 0.3.0   09/18/2024
@@ -35,7 +36,7 @@ import static net.jmp.demo.java23.util.LoggerUtils.*;
 
 /// A class the demonstrates using unnamed variables.
 ///
-/// @version    0.5.0
+/// @version    0.7.0
 /// @since      0.3.0
 public final class UnnamedVariablesDemo implements Demo {
     /// The logger.
@@ -53,8 +54,10 @@ public final class UnnamedVariablesDemo implements Demo {
             this.logger.trace(entry());
         }
 
-        this.unnamedVariables();
-        this.unnamedPatterns();
+        if (this.logger.isInfoEnabled()) {
+            this.unnamedVariables().forEach(this.logger::info);
+            this.logger.info(this.unnamedPatterns());
+        }
 
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(exit());
@@ -62,17 +65,21 @@ public final class UnnamedVariablesDemo implements Demo {
     }
 
     /// Unnamed variables.
-    private void unnamedVariables() {
+    ///
+    /// @return java.util.List<java.lang.String>
+    private List<String> unnamedVariables() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
         }
+
+        final List<String> strings = new ArrayList<>();
 
         // As an exception
 
         try {
             int number = 10 / 0;
         } catch (ArithmeticException _) {
-            this.logger.error("Division by zero");
+            strings.add("Division by zero");
         }
 
         final var items = List.of(1, 2, 3, 4, 5);
@@ -95,24 +102,30 @@ public final class UnnamedVariablesDemo implements Demo {
 
         // In a lambda
 
-        items.forEach(_ -> this.logger.info("An iteration"));
+        items.forEach(_ -> strings.add("An iteration"));
 
         // Try with resources
 
         try (var _ = ForkJoinPool.commonPool()) {
-            this.logger.info("Opened the fork join common pool");
+            strings.add("Opened the fork join common pool");
         }
 
         if (this.logger.isTraceEnabled()) {
-            this.logger.trace(exit());
+            this.logger.trace(exitWith(strings));
         }
+
+        return strings;
     }
 
     /// Unnamed patterns.
-    private void unnamedPatterns() {
+    ///
+    /// @return java.lang.String
+    private String unnamedPatterns() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
         }
+
+        String result;
 
         // Patterns in case statements
 
@@ -121,13 +134,15 @@ public final class UnnamedVariablesDemo implements Demo {
         final Collection<String> collection = set;
 
         switch (collection) {
-            case Set<String> _ -> this.logger.info("Set");
-            case List<String> _ -> this.logger.info("List");
-            default -> this.logger.error("Unsupported collection");
+            case Set<String> _ -> result = "Set";
+            case List<String> _ -> result = "List";
+            default -> result = "Unsupported collection";
         }
 
         if (this.logger.isTraceEnabled()) {
-            this.logger.trace(exit());
+            this.logger.trace(exitWith(result));
         }
+
+        return result;
     }
 }
