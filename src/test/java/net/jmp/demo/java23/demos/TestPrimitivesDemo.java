@@ -40,16 +40,31 @@ import org.junit.Test;
 public final class TestPrimitivesDemo {
     @Test
     public void testOldMethods() throws Exception {
+        final var demo = new PrimitivesDemo();
+        final var method = PrimitivesDemo.class.getDeclaredMethod("oldMethods");
 
+        method.setAccessible(true);
+
+        final Object o = method.invoke(demo);
     }
 
     @Test
     public void testPatterns() throws Exception {
+        final var demo = new PrimitivesDemo();
+        final var method = PrimitivesDemo.class.getDeclaredMethod("patterns");
 
+        method.setAccessible(true);
+
+        final Object o = method.invoke(demo);
     }
 
     @Test
     public void testSwitching() throws Exception {
+        final var demo = new PrimitivesDemo();
+        final var method = PrimitivesDemo.class.getDeclaredMethod("switching");
 
+        method.setAccessible(true);
+
+        final Object o = method.invoke(demo);
     }
 }

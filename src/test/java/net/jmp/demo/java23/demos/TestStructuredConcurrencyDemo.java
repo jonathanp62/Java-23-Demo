@@ -40,21 +40,41 @@ import org.junit.Test;
 public final class TestStructuredConcurrencyDemo {
     @Test
     public void testShutdownOnFailure() throws Exception {
+        final var demo = new StructuredConcurrencyDemo();
+        final var method = StructuredConcurrencyDemo.class.getDeclaredMethod("shutdownOnFailure");
 
+        method.setAccessible(true);
+
+        final Object o = method.invoke(demo);
     }
 
     @Test
     public void testShutdownOnSuccess() throws Exception {
+        final var demo = new StructuredConcurrencyDemo();
+        final var method = StructuredConcurrencyDemo.class.getDeclaredMethod("shutdownOnSuccess");
 
+        method.setAccessible(true);
+
+        final Object o = method.invoke(demo);
     }
 
     @Test
     public void testNoShutdownPolicy() throws Exception {
+        final var demo = new StructuredConcurrencyDemo();
+        final var method = StructuredConcurrencyDemo.class.getDeclaredMethod("noShutdownPolicy");
 
+        method.setAccessible(true);
+
+        final Object o = method.invoke(demo);
     }
 
     @Test
     public void testCustomPolicy() throws Exception {
+        final var demo = new StructuredConcurrencyDemo();
+        final var method = StructuredConcurrencyDemo.class.getDeclaredMethod("customPolicy");
 
+        method.setAccessible(true);
+
+        final Object o = method.invoke(demo);
     }
 }
