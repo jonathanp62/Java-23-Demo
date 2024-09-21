@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)StreamGatherersDemo.java  0.7.0   09/21/2024
  * (#)StreamGatherersDemo.java  0.5.0   09/19/2024
  * (#)StreamGatherersDemo.java  0.4.0   09/19/2024
  * (#)StreamGatherersDemo.java  0.2.0   09/18/2024
@@ -47,7 +48,7 @@ import static net.jmp.demo.java23.util.LoggerUtils.*;
 /// - [Stream Gatherers In Practice Part 2](https://softwaremill.com/stream-gatherers-in-practice-part-2/)
 /// - [Java Stream Gather Example](https://github.com/lukaszrola/java-stream-gather-example)
 ///
-/// @version    0.5.0
+/// @version    0.7.0
 /// @since      0.2.0
 public final class StreamGatherersDemo implements Demo {
     /// The logger.
@@ -65,11 +66,14 @@ public final class StreamGatherersDemo implements Demo {
             this.logger.trace(entry());
         }
 
-        this.slidingWindows();
-        this.fixedWindows();
-        this.scan();
-        this.fold();
-        this.mapConcurrent();
+        if (this.logger.isInfoEnabled()) {
+            this.logger.info("Sliding windows: {}", this.slidingWindows());
+            this.logger.info("Fixed windows: {}", this.fixedWindows());
+            this.logger.info("Scan: {}", this.scan());
+            this.logger.info("Fold: {}", this.fold());
+            this.logger.info("MapConcurrent: {}", this.mapConcurrent());
+        }
+
         this.custom();
 
         if (this.logger.isTraceEnabled()) {
@@ -78,7 +82,9 @@ public final class StreamGatherersDemo implements Demo {
     }
 
     /// Sliding windows.
-    private void slidingWindows() {
+    ///
+    /// @return java.util.List<java.util.List<java.lang.String>>
+    private List<List<String>> slidingWindows() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
         }
@@ -90,17 +96,17 @@ public final class StreamGatherersDemo implements Demo {
                 .gather(Gatherers.windowSliding(3))
                 .toList();
 
-        if (this.logger.isInfoEnabled()) {
-            this.logger.info("Sliding windows: {}", windows);
+        if (this.logger.isTraceEnabled()) {
+            this.logger.trace(exitWith(windows));
         }
 
-        if (this.logger.isTraceEnabled()) {
-            this.logger.trace(exit());
-        }
+        return windows;
     }
 
     /// Fixed windows.
-    private void fixedWindows() {
+    ///
+    /// @return java.util.List<java.util.List<java.lang.String>>
+    private List<List<String>> fixedWindows() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
         }
@@ -112,17 +118,17 @@ public final class StreamGatherersDemo implements Demo {
                 .gather(Gatherers.windowFixed(2))
                 .toList();
 
-        if (this.logger.isInfoEnabled()) {
-            this.logger.info("Fixed windows: {}", windows);
+        if (this.logger.isTraceEnabled()) {
+            this.logger.trace(exitWith(windows));
         }
 
-        if (this.logger.isTraceEnabled()) {
-            this.logger.trace(exit());
-        }
+        return windows;
     }
 
     /// Scan.
-    private void scan() {
+    ///
+    /// @return java.util.List<java.lang.String>
+    private List<String> scan() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
         }
@@ -133,17 +139,17 @@ public final class StreamGatherersDemo implements Demo {
                 Gatherers.scan(() -> "", (string, number) -> string + number)
         ).toList();
 
-        if (this.logger.isInfoEnabled()) {
-            this.logger.info("Scan: {}", numbers);
+        if (this.logger.isTraceEnabled()) {
+            this.logger.trace(exitWith(numbers));
         }
 
-        if (this.logger.isTraceEnabled()) {
-            this.logger.trace(exit());
-        }
+        return numbers;
     }
 
     /// Fold.
-    private void fold() {
+    ///
+    /// @return java.lang.String
+    private String fold() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
         }
@@ -152,19 +158,19 @@ public final class StreamGatherersDemo implements Demo {
                 1, 2, 3, 4, 5, 6, 7, 8, 9
         ).gather(
                 Gatherers.fold(() -> "", (string, number) -> string + number)
-        ).findFirst().get();
-
-        if (this.logger.isInfoEnabled()) {
-            this.logger.info("Fold: {}", numbers);
-        }
+        ).findFirst().orElse("");
 
         if (this.logger.isTraceEnabled()) {
-            this.logger.trace(exit());
+            this.logger.trace(exitWith(numbers));
         }
+
+        return numbers;
     }
 
     /// Map concurrent.
-    private void mapConcurrent() {
+    ///
+    /// @return java.util.List<java.lang.String>
+    private List<String> mapConcurrent() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
         }
@@ -178,13 +184,11 @@ public final class StreamGatherersDemo implements Demo {
                 .gather(Gatherers.mapConcurrent(2, toString))
                 .toList();
 
-        if (this.logger.isInfoEnabled()) {
-            this.logger.info("MapConcurrent: {}", strings);
+        if (this.logger.isTraceEnabled()) {
+            this.logger.trace(exitWith(strings));
         }
 
-        if (this.logger.isTraceEnabled()) {
-            this.logger.trace(exit());
-        }
+        return strings;
     }
 
     /// Custom gatherers.
