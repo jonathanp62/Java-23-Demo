@@ -46,6 +46,16 @@ public final class TestPrimitivesDemo {
         method.setAccessible(true);
 
         final Object o = method.invoke(demo);
+        final List<?> list = castToType(List.class, o);
+        final List<String> results = listToTypedList(list, String.class);
+
+        assertNotNull(results);
+        assertEquals(4, results.size());
+
+        assertEquals("obj1 is a string: Hello!", results.get(0));
+        assertEquals("obj2 is an integer: 6", results.get(1));
+        assertEquals("HELLO!", results.get(2));
+        assertEquals("36", results.get(3));
     }
 
     @Test
@@ -56,6 +66,24 @@ public final class TestPrimitivesDemo {
         method.setAccessible(true);
 
         final Object o = method.invoke(demo);
+        final List<?> list = castToType(List.class, o);
+        final List<String> results = listToTypedList(list, String.class);
+
+        assertNotNull(results);
+        assertEquals(12, results.size());
+
+        assertEquals("value is a byte: 127", results.get(0));
+        assertEquals("65 instanceof byte:   65", results.get(1));
+        assertEquals("65 instanceof short:  65", results.get(2));
+        assertEquals("65 instanceof int:    65", results.get(3));
+        assertEquals("65 instanceof long:   65", results.get(4));
+        assertEquals("65 instanceof float:  65.000000", results.get(5));
+        assertEquals("65 instanceof double: 65.000000", results.get(6));
+        assertEquals("A instanceof char:   A", results.get(7));
+        assertEquals("100000 instanceof int:    100000", results.get(8));
+        assertEquals("100000 instanceof long:   100000", results.get(9));
+        assertEquals("100000 instanceof float:  100000.000000", results.get(10));
+        assertEquals("100000 instanceof double: 100000.000000", results.get(11));
     }
 
     @Test
@@ -66,5 +94,13 @@ public final class TestPrimitivesDemo {
         method.setAccessible(true);
 
         final Object o = method.invoke(demo);
+        final List<?> list = castToType(List.class, o);
+        final List<String> results = listToTypedList(list, String.class);
+
+        assertNotNull(results);
+        assertEquals(2, results.size());
+
+        assertEquals("1000000.000000 instanceof int:    1000000", results.get(0));
+        assertEquals("1000000000000.000000 instanceof long:   1000000000000", results.get(1));
     }
 }

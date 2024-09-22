@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)BeforeSuperDemo.java  0.7.0   09/22/2024
  * (#)BeforeSuperDemo.java  0.6.0   09/20/2024
  *
  * MIT License
@@ -34,7 +35,7 @@ import static net.jmp.demo.java23.util.LoggerUtils.*;
 /// A class the demonstrates primitive types
 /// in patterns, instanceOf, and switch.
 ///
-/// @version    0.6.0
+/// @version    0.7.0
 /// @since      0.6.0
 public final class PrimitivesDemo implements Demo {
     /// The logger.
@@ -53,9 +54,9 @@ public final class PrimitivesDemo implements Demo {
         }
 
         if (this.logger.isInfoEnabled()) {
-            this.oldMethods();
-            this.patterns();
-            this.switching();
+            this.oldMethods().forEach(this.logger::info);
+            this.patterns().forEach(this.logger::info);
+            this.switching().forEach(this.logger::info);
         }
 
         if (this.logger.isTraceEnabled()) {
@@ -65,10 +66,14 @@ public final class PrimitivesDemo implements Demo {
 
     /// Demonstrate the old methods to
     /// do pattern matching and switching.
-    private void oldMethods() {
+    ///
+    /// @return java.util.List<java.lang.String>
+    private List<String> oldMethods() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
         }
+
+        final List<String> strings = new ArrayList<>();
 
         final Object obj1 = (Object) new String("Hello!");
         final Object obj2 = (Object) Integer.valueOf(6);
@@ -76,103 +81,115 @@ public final class PrimitivesDemo implements Demo {
         // instanceOf
 
         if (obj1 instanceof String s && s.length() >= 5) {
-            this.logger.info("obj1 is a string: {}", s);
+            strings.add(String.format("obj1 is a string: %s", s));
         } else if (obj1 instanceof Integer i) {
-            this.logger.info("obj1 is an integer: {}", i);
+            strings.add(String.format("obj1 is an integer: %d", i));
         } else {
-            this.logger.info("obj1 is unknown");;
+            strings.add("obj1 is unknown");;
         }
 
         if (obj2 instanceof String s && s.length() >= 5) {
-            this.logger.info("obj2 is a string: {}", s);
+            strings.add(String.format("obj2 is a string: %s", s));
         } else if (obj2 instanceof Integer i) {
-            this.logger.info("obj2 is an integer: {}", i);
+            strings.add(String.format("obj2 is an integer: %d", i));
         } else {
-            this.logger.info("obj2 is unknown");;
+            strings.add("obj2 is unknown");;
         }
 
         // switch (when is a guard, i.e. a boolean expression)
 
         switch (obj1) {
-            case String s when s.length() >= 5 -> this.logger.info(s.toUpperCase());
-            case Integer i                     -> this.logger.info(String.valueOf(i * i));
-            case null, default                 -> this.logger.info(obj1.toString());
+            case String s when s.length() >= 5 -> strings.add(s.toUpperCase());
+            case Integer i                     -> strings.add(String.valueOf(i * i));
+            case null, default                 -> strings.add(obj1.toString());
         }
 
         switch (obj2) {
-            case String s when s.length() >= 5 -> this.logger.info(s.toUpperCase());
-            case Integer i                     -> this.logger.info(String.valueOf(i * i));
-            case null, default                 -> this.logger.info(obj2.toString());
+            case String s when s.length() >= 5 -> strings.add(s.toUpperCase());
+            case Integer i                     -> strings.add(String.valueOf(i * i));
+            case null, default                 -> strings.add(obj2.toString());
         }
 
         if (this.logger.isTraceEnabled()) {
-            this.logger.trace(exit());
+            this.logger.trace(exitWith(strings));
         }
+
+        return strings;
     }
 
     /// Demonstrate primitive
     /// types in patterns.
-    private void patterns() {
+    ///
+    /// @return java.util.List<java.lang.String>
+    private List<String> patterns() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
         }
+
+        final List<String> strings = new ArrayList<>();
 
         int value = 127;
 
         // byte ranges from -128 to 127
 
         if (value instanceof byte b) {
-            this.logger.info("value is a byte: {}", b); // Does execute
+            strings.add(String.format("value is a byte: %d", b));   // Does execute
         }
 
         value = 128;
 
         if (value instanceof byte b) {
-            this.logger.info("value is a byte: {}", b); // Does not execute
+            strings.add(String.format("value is a byte: %d", b));   // Does not execute
         }
 
         value = 65;
 
-        if (value instanceof byte b)   this.logger.info("{} instanceof byte:  {} ", value, b);  // Does execute
-        if (value instanceof short s)  this.logger.info("{} instanceof short:  {}", value, s);  // Does execute
-        if (value instanceof int i)    this.logger.info("{} instanceof int:    {}", value, i);  // Does execute
-        if (value instanceof long l)   this.logger.info("{} instanceof long:   {}", value, l);  // Does execute
-        if (value instanceof float f)  this.logger.info("{} instanceof float:  {}", value, f);  // Does execute
-        if (value instanceof double d) this.logger.info("{} instanceof double: {}", value, d);  // Does execute
-        if (value instanceof char c)   this.logger.info("{} instanceof char:   {}", value, c);  // Does execute
+        if (value instanceof byte b)   strings.add(String.format("%d instanceof byte:   %d", value, b));  // Does execute
+        if (value instanceof short s)  strings.add(String.format("%d instanceof short:  %d", value, s));  // Does execute
+        if (value instanceof int i)    strings.add(String.format("%d instanceof int:    %d", value, i));  // Does execute
+        if (value instanceof long l)   strings.add(String.format("%d instanceof long:   %d", value, l));  // Does execute
+        if (value instanceof float f)  strings.add(String.format("%d instanceof float:  %f", value, f));  // Does execute
+        if (value instanceof double d) strings.add(String.format("%d instanceof double: %f", value, d));  // Does execute
+        if (value instanceof char c)   strings.add(String.format("%c instanceof char:   %c", value, c));  // Does execute
 
         value = 100_000;
 
-        if (value instanceof byte b)   this.logger.info("{} instanceof byte:  {} ", value, b);  // Does not execute
-        if (value instanceof short s)  this.logger.info("{} instanceof short:  {}", value, s);  // Does not execute
-        if (value instanceof int i)    this.logger.info("{} instanceof int:    {}", value, i);  // Does execute
-        if (value instanceof long l)   this.logger.info("{} instanceof long:   {}", value, l);  // Does execute
-        if (value instanceof float f)  this.logger.info("{} instanceof float:  {}", value, f);  // Does execute
-        if (value instanceof double d) this.logger.info("{} instanceof double: {}", value, d);  // Does execute
-        if (value instanceof char c)   this.logger.info("{} instanceof char:   {}", value, c);  // Does not execute
+        if (value instanceof byte b)   strings.add(String.format("%d instanceof byte:   %d", value, b));  // Does not execute
+        if (value instanceof short s)  strings.add(String.format("%d instanceof short:  %d", value, s));  // Does not execute
+        if (value instanceof int i)    strings.add(String.format("%d instanceof int:    %d", value, i));  // Does execute
+        if (value instanceof long l)   strings.add(String.format("%d instanceof long:   %d", value, l));  // Does execute
+        if (value instanceof float f)  strings.add(String.format("%d instanceof float:  %f", value, f));  // Does execute
+        if (value instanceof double d) strings.add(String.format("%d instanceof double: %f", value, d));  // Does execute
+        if (value instanceof char c)   strings.add(String.format("%c instanceof char:   %c", value, c));  // Does not execute
 
         if (this.logger.isTraceEnabled()) {
-            this.logger.trace(exit());
+            this.logger.trace(exitWith(strings));
         }
+
+        return strings;
     }
 
     /// Demonstrate primitive
     /// types in switch.
-    private void switching() {
+    ///
+    /// @return java.util.List<java.lang.String>
+    private List<String> switching() {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(entry());
         }
 
+        final List<String> strings = new ArrayList<>();
+
         double value = 1_000_000.0;
 
         switch (value) {
-            case byte   b -> this.logger.info("{} instanceof byte:  {} ", value, b);    // Does not execute
-            case short  s -> this.logger.info("{} instanceof short:  {}", value, s);    // Does not execute
-            case char   c -> this.logger.info("{} instanceof char:   {}", value, c);    // Does not execute
-            case int    i -> this.logger.info("{} instanceof int:    {}", value, i);    // Does execute
-            case long   l -> this.logger.info("{} instanceof long:   {}", value, l);    // Does not execute
-            case float  f -> this.logger.info("{} instanceof float:  {}", value, f);    // Does not execute
-            case double d -> this.logger.info("{} instanceof double: {}", value, d);    // Does not execute
+            case byte   b -> strings.add(String.format("%f instanceof byte:   %d", value, b));    // Does not execute
+            case short  s -> strings.add(String.format("%f instanceof short:  %d", value, s));    // Does not execute
+            case char   c -> strings.add(String.format("%f instanceof char:   %c", value, c));    // Does not execute
+            case int    i -> strings.add(String.format("%f instanceof int:    %d", value, i));    // Does execute
+            case long   l -> strings.add(String.format("%f instanceof long:   %d", value, l));    // Does not execute
+            case float  f -> strings.add(String.format("%f instanceof float:  %f", value, f));    // Does not execute
+            case double d -> strings.add(String.format("%f instanceof double: %f", value, d));    // Does not execute
         }
 
         // when is a guard, i.e. a boolean expression
@@ -180,17 +197,19 @@ public final class PrimitivesDemo implements Demo {
         value = 1_000_000_000_000.0;
 
         switch (value) {
-            case byte   b -> this.logger.info("{} instanceof byte:  {} ", value, b);    // Does not execute
-            case short  s -> this.logger.info("{} instanceof short:  {}", value, s);    // Does not execute
-            case char   c -> this.logger.info("{} instanceof char:   {}", value, c);    // Does not execute
-            case int    i when i <= 1_000_000 -> this.logger.info("{} instanceof int:    {}", value, i);    // Does not execute
-            case long   l -> this.logger.info("{} instanceof long:   {}", value, l);    // Does execute
-            case float  f -> this.logger.info("{} instanceof float:  {}", value, f);    // Does not execute
-            case double d -> this.logger.info("{} instanceof double: {}", value, d);    // Does not execute
+            case byte   b -> strings.add(String.format("%f instanceof byte:   %d", value, b));    // Does not execute
+            case short  s -> strings.add(String.format("%f instanceof short:  %d", value, s));    // Does not execute
+            case char   c -> strings.add(String.format("%f instanceof char:   %c", value, c));    // Does not execute
+            case int    i when i <= 1_000_000 -> strings.add(String.format("%f instanceof int:    %d", value, i));    // Does not execute
+            case long   l -> strings.add(String.format("%f instanceof long:   %d", value, l));    // Does execute
+            case float  f -> strings.add(String.format("%f instanceof float:  %f", value, f));    // Does not execute
+            case double d -> strings.add(String.format("%f instanceof double: %f", value, d));    // Does not execute
         }
 
         if (this.logger.isTraceEnabled()) {
-            this.logger.trace(exit());
+            this.logger.trace(exitWith(strings));
         }
+
+        return strings;
     }
 }
