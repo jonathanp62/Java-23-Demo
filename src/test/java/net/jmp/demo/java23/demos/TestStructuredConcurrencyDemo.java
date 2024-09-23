@@ -46,6 +46,20 @@ public final class TestStructuredConcurrencyDemo {
         method.setAccessible(true);
 
         final Object o = method.invoke(demo);
+        final List<?> list = castToType(List.class, o);
+        final List<String> results = listToTypedList(list, String.class);
+
+        assertNotNull(results);
+        assertEquals(8, results.size());
+
+        assertEquals("User: Jonathan; Order: 123", results.get(0));
+        assertEquals("Red", results.get(1));
+        assertEquals("Orange", results.get(2));
+        assertEquals("Yellow", results.get(3));
+        assertEquals("Green", results.get(4));
+        assertEquals("Blue", results.get(5));
+        assertEquals("Indigo", results.get(6));
+        assertEquals("Violet", results.get(7));
     }
 
     @Test
@@ -56,6 +70,17 @@ public final class TestStructuredConcurrencyDemo {
         method.setAccessible(true);
 
         final Object o = method.invoke(demo);
+        final String result = castToType(String.class, o);
+
+        assertNotNull(result);
+
+        List<String> expected = List.of(
+                "Result: Jonathan",
+                "Result: Martin",
+                "Result: Parker"
+        );
+
+        assertTrue(expected.contains(result));
     }
 
     @Test
@@ -66,6 +91,16 @@ public final class TestStructuredConcurrencyDemo {
         method.setAccessible(true);
 
         final Object o = method.invoke(demo);
+        final List<?> list = castToType(List.class, o);
+        final List<String> results = listToTypedList(list, String.class);
+
+        assertNotNull(results);
+        assertEquals(4, results.size());
+
+        assertEquals("Future: 1", results.get(0));
+        assertEquals("Future: 2", results.get(1));
+        assertEquals("Future: java.lang.ArithmeticException: / by zero", results.get(2));
+        assertEquals("Future: 0", results.get(3));
     }
 
     @Test
@@ -76,5 +111,20 @@ public final class TestStructuredConcurrencyDemo {
         method.setAccessible(true);
 
         final Object o = method.invoke(demo);
+        final List<?> list = castToType(List.class, o);
+        final List<String> results = listToTypedList(list, String.class);
+
+        assertNotNull(results);
+        assertEquals(6, results.size());
+
+        final List<String> expected = List.of(
+                "Custom result: 0",
+                "Custom result: 1",
+                "Custom result: 2",
+                "Custom result: 5",
+                "Custom throwable: / by zero"
+        );
+
+        results.forEach(result -> assertTrue(expected.contains(result)));
     }
 }
