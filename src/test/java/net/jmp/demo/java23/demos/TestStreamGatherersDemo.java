@@ -1,10 +1,8 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)TestStreamGatherersDemo.java  0.8.0   09/24/2024
  * (#)TestStreamGatherersDemo.java  0.7.0   09/20/2024
- *
- * @version  0.7.0
- * @since    0.7.0
  *
  * MIT License
  *
@@ -33,12 +31,16 @@ import module java.base;
 
 import net.jmp.demo.java23.records.Money;
 
-import static net.jmp.demo.java23.testutil.TestUtils.*;
+import static net.jmp.util.testing.testutil.TestUtils.*;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/// The test class for StreamGatherersDemo.
+///
+/// @version    0.8.0
+/// @since      0.7.0
 public final class TestStreamGatherersDemo {
     @Test
     public void testSlidingWindows() throws Exception {

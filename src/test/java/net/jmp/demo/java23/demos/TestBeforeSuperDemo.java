@@ -1,10 +1,8 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)TestBeforeSuperDemo.java  0.8.0   09/24/2024
  * (#)TestBeforeSuperDemo.java  0.7.0   09/20/2024
- *
- * @version  0.7.0
- * @since    0.7.0
  *
  * MIT License
  *
@@ -31,12 +29,16 @@ package net.jmp.demo.java23.demos;
 
 import java.lang.reflect.InvocationTargetException;
 
-import static net.jmp.demo.java23.testutil.TestUtils.castToType;
+import static net.jmp.util.testing.testutil.TestUtils.castToType;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/// The test class for BeforeSuperDemo.
+///
+/// @version    0.8.0
+/// @since      0.7.0
 public final class TestBeforeSuperDemo {
     @Test
     public void testNewSquareOk() throws Exception {

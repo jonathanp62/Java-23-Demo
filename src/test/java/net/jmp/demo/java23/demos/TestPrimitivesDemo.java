@@ -1,10 +1,8 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)TestPrimitivesDemo.java   0.8.0   09/24/2024
  * (#)TestPrimitivesDemo.java   0.7.0   09/21/2024
- *
- * @version  0.7.0
- * @since    0.7.0
  *
  * MIT License
  *
@@ -31,12 +29,16 @@ package net.jmp.demo.java23.demos;
 
 import module java.base;
 
-import static net.jmp.demo.java23.testutil.TestUtils.*;
+import static net.jmp.util.testing.testutil.TestUtils.*;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/// The test class for PrimitivesDemo.
+///
+/// @version    0.8.0
+/// @since      0.7.0
 public final class TestPrimitivesDemo {
     @Test
     public void testOldMethods() throws Exception {
