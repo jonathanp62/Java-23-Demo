@@ -1,4 +1,5 @@
 /*
+ * (#)module-info.java  0.8.0   09/24/2024
  * (#)module-info.java  0.5.0   09/19/2024
  * (#)module-info.java  0.4.0   09/19/2024
  * (#)module-info.java  0.1.0   09/18/2024
@@ -31,5 +32,6 @@
 /// @since  0.1.0
 module java23_demo.main {
     requires java.base;
+    requires logging.utilities;
     requires org.slf4j;
 }

@@ -1,8 +1,9 @@
 package net.jmp.demo.java23.demos;
 
 /*
- * (#)BeforeSuperDemo.java  0.7.0   09/22/2024
- * (#)BeforeSuperDemo.java  0.6.0   09/20/2024
+ * (#)PrimitivesDemo.java   0.8.0   09/24/2024
+ * (#)PrimitivesDemo.java   0.7.0   09/22/2024
+ * (#)PrimitivesDemo.java   0.6.0   09/20/2024
  *
  * MIT License
  *
@@ -30,12 +31,12 @@ package net.jmp.demo.java23.demos;
 import module java.base;
 import module org.slf4j;
 
-import static net.jmp.demo.java23.util.LoggerUtils.*;
+import static net.jmp.util.logging.LoggerUtils.*;
 
 /// A class the demonstrates primitive types
 /// in patterns, instanceOf, and switch.
 ///
-/// @version    0.7.0
+/// @version    0.8.0
 /// @since      0.6.0
 public final class PrimitivesDemo implements Demo {
     /// The logger.

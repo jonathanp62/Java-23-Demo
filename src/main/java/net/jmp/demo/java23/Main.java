@@ -1,6 +1,7 @@
 package net.jmp.demo.java23;
 
 /*
+ * (#)Main.java 0.8.0   09/24/2024
  * (#)Main.java 0.6.0   09/20/2024
  * (#)Main.java 0.5.0   09/19/2024
  * (#)Main.java 0.4.0   09/19/2024
@@ -36,13 +37,13 @@ import module org.slf4j;
 
 import net.jmp.demo.java23.demos.*;
 
-import static net.jmp.demo.java23.util.LoggerUtils.*;
+import static net.jmp.util.logging.LoggerUtils.*;
 
 /// The main class. This class is instantiated
 /// and run from the bootstrap class when the
 /// application starts.
 ///
-/// @version    0.6.0
+/// @version    0.8.0
 /// @since      0.1.0
 final class Main implements Runnable {
     /// The logger.

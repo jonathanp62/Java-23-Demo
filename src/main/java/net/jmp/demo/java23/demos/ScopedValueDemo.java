@@ -1,6 +1,7 @@
 package net.jmp.demo.java23.demos;
 
 /*
+ * (#)ScopedValueDemo.java  0.8.0   09/24/2024
  * (#)ScopedValueDemo.java  0.7.0   09/20/2024
  * (#)ScopedValueDemo.java  0.5.0   09/19/2024
  * (#)ScopedValueDemo.java  0.4.0   09/19/2024
@@ -32,9 +33,9 @@ package net.jmp.demo.java23.demos;
 import module java.base;
 import module org.slf4j;
 
-import static net.jmp.demo.java23.util.LoggerUtils.*;
-
 import net.jmp.demo.java23.util.WrappedObject;
+
+import static net.jmp.util.logging.LoggerUtils.*;
 
 /// The class that demonstrates the scoped value.
 ///
@@ -48,7 +49,7 @@ import net.jmp.demo.java23.util.WrappedObject;
 /// is set to private so that it cannot be directly accessed
 /// by code in other classes.
 ///
-/// @version    0.7.0
+/// @version    0.8.0
 /// @since      0.2.0
 public final class ScopedValueDemo implements Demo {
     /// The logger.
